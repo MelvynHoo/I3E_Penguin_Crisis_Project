@@ -1,0 +1,146 @@
+fileFormatVersion: 2
+guid: 2b3be539ec378480ea2bd9fb383ff7fe
+timeCreated: 1462186810
+licenseType: Store
+ModelImporter:
+  serializedVersion: 18
+  fileIDToRecycleName:
+    100000: Calf_L
+    100002: Calf_R
+    100004: Clavicle_L
+    100006: Clavicle_R
+    100008: Eye_L
+    100010: Eye_R
+    100012: FirstEyelid_L
+    100014: FirstEyelid_R
+    100016: Foot_L
+    100018: Foot_R
+    100020: Forearm_L
+    100022: Forearm_R
+    100024: Hand_L
+    100026: Hand_R
+    100028: Head
+    100030: Jaw
+    100032: Jaw.1
+    100034: Neck.1
+    100036: Neck.2
+    100038: Neck.3
+    100040: Pelvis
+    100042: RedFootedTortoiseLOD0
+    100044: RedFootedTortoiseLOD1
+    100046: //RootNode
+    100048: Root
+    100050: SecondEyelid_L
+    100052: SecondEyelid_R
+    100054: Spine
+    100056: Tail.1
+    100058: Tail.2
+    100060: Thigh_L
+    100062: Thigh_R
+    100064: ThirdEyelid_L
+    100066: ThirdEyelid_R
+    100068: Tongue.1
+    100070: Tongue.3
+    100072: UpperArm_L
+    100074: UpperArm_R
+    400000: Calf_L
+    400002: Calf_R
+    400004: Clavicle_L
+    400006: Clavicle_R
+    400008: Eye_L
+    400010: Eye_R
+    400012: FirstEyelid_L
+    400014: FirstEyelid_R
+    400016: Foot_L
+    400018: Foot_R
+    400020: Forearm_L
+    400022: Forearm_R
+    400024: Hand_L
+    400026: Hand_R
+    400028: Head
+    400030: Jaw
+    400032: Jaw.1
+    400034: Neck.1
+    400036: Neck.2
+    400038: Neck.3
+    400040: Pelvis
+    400042: RedFootedTortoiseLOD0
+    400044: RedFootedTortoiseLOD1
+    400046: //RootNode
+    400048: Root
+    400050: SecondEyelid_L
+    400052: SecondEyelid_R
+    400054: Spine
+    400056: Tail.1
+    400058: Tail.2
+    400060: Thigh_L
+    400062: Thigh_R
+    400064: ThirdEyelid_L
+    400066: ThirdEyelid_R
+    400068: Tongue.1
+    400070: Tongue.3
+    400072: UpperArm_L
+    400074: UpperArm_R
+    4300000: RedFootedTortoiseLOD0
+    4300002: RedFootedTortoiseLOD1
+    9500000: //RootNode
+    13700000: RedFootedTortoiseLOD0
+    13700002: RedFootedTortoiseLOD1
+  materials:
+    importMaterials: 1
+    materialName: 0
+    materialSearch: 1
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    optimizeGameObjects: 0
+    motionNodeName: 
+    animationCompression: 1
+    animationRotationError: .5
+    animationPositionError: .5
+    animationScaleError: .5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    clipAnimations: []
+    isReadable: 1
+  meshes:
+    lODScreenPercentages: []
+    globalScale: 1
+    meshCompression: 0
+    addColliders: 0
+    importBlendShapes: 1
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    optimizeMeshForGPU: 1
+    keepQuads: 0
+    weldVertices: 1
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVPackMargin: 4
+    useFileScale: 1
+  tangentSpace:
+    normalSmoothAngle: 60
+    splitTangentsAcrossUV: 1
+    normalImportMode: 0
+    tangentImportMode: 1
+  importAnimation: 1
+  copyAvatar: 0
+  humanDescription:
+    human: []
+    skeleton: []
+    armTwist: .5
+    foreArmTwist: .5
+    upperLegTwist: .5
+    legTwist: .5
+    armStretch: .0500000007
+    legStretch: .0500000007
+    feetSpacing: 0
+    rootMotionBoneName: Root
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  animationType: 2
+  additionalBone: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

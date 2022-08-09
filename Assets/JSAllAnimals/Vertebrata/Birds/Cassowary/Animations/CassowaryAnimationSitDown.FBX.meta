@@ -1,0 +1,444 @@
+fileFormatVersion: 2
+guid: 910b11c4be3834b00a0f8bb821d62959
+timeCreated: 1465150444
+licenseType: Store
+ModelImporter:
+  serializedVersion: 18
+  fileIDToRecycleName:
+    100000: Beak
+    100002: //RootNode
+    100004: CassowaryDummy
+    100006: Head
+    100008: Keel.1
+    100010: L.Digit.2.1
+    100012: L.Digit.2.2
+    100014: L.Digit.3.1
+    100016: L.Digit.3.2
+    100018: L.Digit.3.3
+    100020: L.Digit.4.1
+    100022: L.Digit.4.2
+    100024: L_Breast
+    100026: L_Eye
+    100028: L_Femur
+    100030: L_LowerEyelid
+    100032: L_TailFeather.1.1
+    100034: L_Tarsus.1
+    100036: L_Tarsus.2
+    100038: L_ThirdEyelid
+    100040: L_Tibia
+    100042: L_UpperEyeLid
+    100044: Neck.1
+    100046: Neck.2
+    100048: Neck.2_L
+    100050: Neck.2_L.001
+    100052: Neck.2_R
+    100054: Neck.2_R.001
+    100056: Neck.3
+    100058: Neck.4
+    100060: Neck.5
+    100062: Pelvis
+    100064: R.Digit.2.1
+    100066: R.Digit.2.2
+    100068: R.Digit.3.1
+    100070: R.Digit.3.2
+    100072: R.Digit.3.3
+    100074: R.Digit.4.1
+    100076: R.Digit.4.2
+    100078: R_Breast
+    100080: R_Eye
+    100082: R_Femur
+    100084: R_LowerEyelid
+    100086: R_TailFeather.1.1
+    100088: R_Tarsus.1
+    100090: R_Tarsus.2
+    100092: R_ThirdEyelid
+    100094: R_Tibia
+    100096: R_UpperEyeLid
+    100098: RootNode
+    100100: Spine.2
+    100102: Spine.3
+    100104: Spline.1
+    100106: Tail.1
+    400000: Beak
+    400002: //RootNode
+    400004: CassowaryDummy
+    400006: Head
+    400008: Keel.1
+    400010: L.Digit.2.1
+    400012: L.Digit.2.2
+    400014: L.Digit.3.1
+    400016: L.Digit.3.2
+    400018: L.Digit.3.3
+    400020: L.Digit.4.1
+    400022: L.Digit.4.2
+    400024: L_Breast
+    400026: L_Eye
+    400028: L_Femur
+    400030: L_LowerEyelid
+    400032: L_TailFeather.1.1
+    400034: L_Tarsus.1
+    400036: L_Tarsus.2
+    400038: L_ThirdEyelid
+    400040: L_Tibia
+    400042: L_UpperEyeLid
+    400044: Neck.1
+    400046: Neck.2
+    400048: Neck.2_L
+    400050: Neck.2_L.001
+    400052: Neck.2_R
+    400054: Neck.2_R.001
+    400056: Neck.3
+    400058: Neck.4
+    400060: Neck.5
+    400062: Pelvis
+    400064: R.Digit.2.1
+    400066: R.Digit.2.2
+    400068: R.Digit.3.1
+    400070: R.Digit.3.2
+    400072: R.Digit.3.3
+    400074: R.Digit.4.1
+    400076: R.Digit.4.2
+    400078: R_Breast
+    400080: R_Eye
+    400082: R_Femur
+    400084: R_LowerEyelid
+    400086: R_TailFeather.1.1
+    400088: R_Tarsus.1
+    400090: R_Tarsus.2
+    400092: R_ThirdEyelid
+    400094: R_Tibia
+    400096: R_UpperEyeLid
+    400098: RootNode
+    400100: Spine.2
+    400102: Spine.3
+    400104: Spline.1
+    400106: Tail.1
+    7400000: SitDown
+    7400002: StandUp
+    9500000: //RootNode
+  materials:
+    importMaterials: 1
+    materialName: 0
+    materialSearch: 1
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    optimizeGameObjects: 0
+    motionNodeName: 
+    animationCompression: 1
+    animationRotationError: .5
+    animationPositionError: .5
+    animationScaleError: .5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    clipAnimations:
+    - serializedVersion: 16
+      name: SitDown
+      takeName: Take 001
+      firstFrame: 0
+      lastFrame: 30
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 1
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask:
+      - path: 
+        weight: 1
+      - path: CassowaryDummy
+        weight: 1
+      - path: RootNode
+        weight: 1
+      - path: RootNode/Pelvis
+        weight: 1
+      - path: RootNode/Pelvis/L_Femur
+        weight: 1
+      - path: RootNode/Pelvis/L_Femur/L_Tibia
+        weight: 1
+      - path: RootNode/Pelvis/L_Femur/L_Tibia/L_Tarsus.1
+        weight: 1
+      - path: RootNode/Pelvis/L_Femur/L_Tibia/L_Tarsus.1/L_Tarsus.2
+        weight: 1
+      - path: RootNode/Pelvis/L_Femur/L_Tibia/L_Tarsus.1/L_Tarsus.2/L.Digit.2.1
+        weight: 1
+      - path: RootNode/Pelvis/L_Femur/L_Tibia/L_Tarsus.1/L_Tarsus.2/L.Digit.2.1/L.Digit.2.2
+        weight: 1
+      - path: RootNode/Pelvis/L_Femur/L_Tibia/L_Tarsus.1/L_Tarsus.2/L.Digit.3.1
+        weight: 1
+      - path: RootNode/Pelvis/L_Femur/L_Tibia/L_Tarsus.1/L_Tarsus.2/L.Digit.3.1/L.Digit.3.2
+        weight: 1
+      - path: RootNode/Pelvis/L_Femur/L_Tibia/L_Tarsus.1/L_Tarsus.2/L.Digit.3.1/L.Digit.3.2/L.Digit.3.3
+        weight: 1
+      - path: RootNode/Pelvis/L_Femur/L_Tibia/L_Tarsus.1/L_Tarsus.2/L.Digit.4.1
+        weight: 1
+      - path: RootNode/Pelvis/L_Femur/L_Tibia/L_Tarsus.1/L_Tarsus.2/L.Digit.4.1/L.Digit.4.2
+        weight: 1
+      - path: RootNode/Pelvis/R_Femur
+        weight: 1
+      - path: RootNode/Pelvis/R_Femur/R_Tibia
+        weight: 1
+      - path: RootNode/Pelvis/R_Femur/R_Tibia/R_Tarsus.1
+        weight: 1
+      - path: RootNode/Pelvis/R_Femur/R_Tibia/R_Tarsus.1/R_Tarsus.2
+        weight: 1
+      - path: RootNode/Pelvis/R_Femur/R_Tibia/R_Tarsus.1/R_Tarsus.2/R.Digit.2.1
+        weight: 1
+      - path: RootNode/Pelvis/R_Femur/R_Tibia/R_Tarsus.1/R_Tarsus.2/R.Digit.2.1/R.Digit.2.2
+        weight: 1
+      - path: RootNode/Pelvis/R_Femur/R_Tibia/R_Tarsus.1/R_Tarsus.2/R.Digit.3.1
+        weight: 1
+      - path: RootNode/Pelvis/R_Femur/R_Tibia/R_Tarsus.1/R_Tarsus.2/R.Digit.3.1/R.Digit.3.2
+        weight: 1
+      - path: RootNode/Pelvis/R_Femur/R_Tibia/R_Tarsus.1/R_Tarsus.2/R.Digit.3.1/R.Digit.3.2/R.Digit.3.3
+        weight: 1
+      - path: RootNode/Pelvis/R_Femur/R_Tibia/R_Tarsus.1/R_Tarsus.2/R.Digit.4.1
+        weight: 1
+      - path: RootNode/Pelvis/R_Femur/R_Tibia/R_Tarsus.1/R_Tarsus.2/R.Digit.4.1/R.Digit.4.2
+        weight: 1
+      - path: RootNode/Pelvis/Spline.1
+        weight: 1
+      - path: RootNode/Pelvis/Spline.1/Spine.2
+        weight: 1
+      - path: RootNode/Pelvis/Spline.1/Spine.2/L_Breast
+        weight: 1
+      - path: RootNode/Pelvis/Spline.1/Spine.2/R_Breast
+        weight: 1
+      - path: RootNode/Pelvis/Spline.1/Spine.2/Spine.3
+        weight: 1
+      - path: RootNode/Pelvis/Spline.1/Spine.2/Spine.3/Keel.1
+        weight: 1
+      - path: RootNode/Pelvis/Spline.1/Spine.2/Spine.3/Neck.1
+        weight: 1
+      - path: RootNode/Pelvis/Spline.1/Spine.2/Spine.3/Neck.1/Neck.2
+        weight: 1
+      - path: RootNode/Pelvis/Spline.1/Spine.2/Spine.3/Neck.1/Neck.2/Neck.2_L
+        weight: 1
+      - path: RootNode/Pelvis/Spline.1/Spine.2/Spine.3/Neck.1/Neck.2/Neck.2_L/Neck.2_L.001
+        weight: 1
+      - path: RootNode/Pelvis/Spline.1/Spine.2/Spine.3/Neck.1/Neck.2/Neck.2_R
+        weight: 1
+      - path: RootNode/Pelvis/Spline.1/Spine.2/Spine.3/Neck.1/Neck.2/Neck.2_R/Neck.2_R.001
+        weight: 1
+      - path: RootNode/Pelvis/Spline.1/Spine.2/Spine.3/Neck.1/Neck.2/Neck.3
+        weight: 1
+      - path: RootNode/Pelvis/Spline.1/Spine.2/Spine.3/Neck.1/Neck.2/Neck.3/Neck.4
+        weight: 1
+      - path: RootNode/Pelvis/Spline.1/Spine.2/Spine.3/Neck.1/Neck.2/Neck.3/Neck.4/Neck.5
+        weight: 1
+      - path: RootNode/Pelvis/Spline.1/Spine.2/Spine.3/Neck.1/Neck.2/Neck.3/Neck.4/Neck.5/Head
+        weight: 1
+      - path: RootNode/Pelvis/Spline.1/Spine.2/Spine.3/Neck.1/Neck.2/Neck.3/Neck.4/Neck.5/Head/Beak
+        weight: 1
+      - path: RootNode/Pelvis/Spline.1/Spine.2/Spine.3/Neck.1/Neck.2/Neck.3/Neck.4/Neck.5/Head/L_Eye
+        weight: 1
+      - path: RootNode/Pelvis/Spline.1/Spine.2/Spine.3/Neck.1/Neck.2/Neck.3/Neck.4/Neck.5/Head/L_LowerEyelid
+        weight: 1
+      - path: RootNode/Pelvis/Spline.1/Spine.2/Spine.3/Neck.1/Neck.2/Neck.3/Neck.4/Neck.5/Head/L_ThirdEyelid
+        weight: 1
+      - path: RootNode/Pelvis/Spline.1/Spine.2/Spine.3/Neck.1/Neck.2/Neck.3/Neck.4/Neck.5/Head/L_UpperEyeLid
+        weight: 1
+      - path: RootNode/Pelvis/Spline.1/Spine.2/Spine.3/Neck.1/Neck.2/Neck.3/Neck.4/Neck.5/Head/R_Eye
+        weight: 1
+      - path: RootNode/Pelvis/Spline.1/Spine.2/Spine.3/Neck.1/Neck.2/Neck.3/Neck.4/Neck.5/Head/R_LowerEyelid
+        weight: 1
+      - path: RootNode/Pelvis/Spline.1/Spine.2/Spine.3/Neck.1/Neck.2/Neck.3/Neck.4/Neck.5/Head/R_ThirdEyelid
+        weight: 1
+      - path: RootNode/Pelvis/Spline.1/Spine.2/Spine.3/Neck.1/Neck.2/Neck.3/Neck.4/Neck.5/Head/R_UpperEyeLid
+        weight: 1
+      - path: RootNode/Pelvis/Tail.1
+        weight: 1
+      - path: RootNode/Pelvis/Tail.1/L_TailFeather.1.1
+        weight: 1
+      - path: RootNode/Pelvis/Tail.1/R_TailFeather.1.1
+        weight: 1
+      maskType: 0
+      maskSource: {instanceID: 0}
+    - serializedVersion: 16
+      name: StandUp
+      takeName: Take 001
+      firstFrame: 40
+      lastFrame: 70
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 1
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask:
+      - path: 
+        weight: 1
+      - path: CassowaryDummy
+        weight: 1
+      - path: RootNode
+        weight: 1
+      - path: RootNode/Pelvis
+        weight: 1
+      - path: RootNode/Pelvis/L_Femur
+        weight: 1
+      - path: RootNode/Pelvis/L_Femur/L_Tibia
+        weight: 1
+      - path: RootNode/Pelvis/L_Femur/L_Tibia/L_Tarsus.1
+        weight: 1
+      - path: RootNode/Pelvis/L_Femur/L_Tibia/L_Tarsus.1/L_Tarsus.2
+        weight: 1
+      - path: RootNode/Pelvis/L_Femur/L_Tibia/L_Tarsus.1/L_Tarsus.2/L.Digit.2.1
+        weight: 1
+      - path: RootNode/Pelvis/L_Femur/L_Tibia/L_Tarsus.1/L_Tarsus.2/L.Digit.2.1/L.Digit.2.2
+        weight: 1
+      - path: RootNode/Pelvis/L_Femur/L_Tibia/L_Tarsus.1/L_Tarsus.2/L.Digit.3.1
+        weight: 1
+      - path: RootNode/Pelvis/L_Femur/L_Tibia/L_Tarsus.1/L_Tarsus.2/L.Digit.3.1/L.Digit.3.2
+        weight: 1
+      - path: RootNode/Pelvis/L_Femur/L_Tibia/L_Tarsus.1/L_Tarsus.2/L.Digit.3.1/L.Digit.3.2/L.Digit.3.3
+        weight: 1
+      - path: RootNode/Pelvis/L_Femur/L_Tibia/L_Tarsus.1/L_Tarsus.2/L.Digit.4.1
+        weight: 1
+      - path: RootNode/Pelvis/L_Femur/L_Tibia/L_Tarsus.1/L_Tarsus.2/L.Digit.4.1/L.Digit.4.2
+        weight: 1
+      - path: RootNode/Pelvis/R_Femur
+        weight: 1
+      - path: RootNode/Pelvis/R_Femur/R_Tibia
+        weight: 1
+      - path: RootNode/Pelvis/R_Femur/R_Tibia/R_Tarsus.1
+        weight: 1
+      - path: RootNode/Pelvis/R_Femur/R_Tibia/R_Tarsus.1/R_Tarsus.2
+        weight: 1
+      - path: RootNode/Pelvis/R_Femur/R_Tibia/R_Tarsus.1/R_Tarsus.2/R.Digit.2.1
+        weight: 1
+      - path: RootNode/Pelvis/R_Femur/R_Tibia/R_Tarsus.1/R_Tarsus.2/R.Digit.2.1/R.Digit.2.2
+        weight: 1
+      - path: RootNode/Pelvis/R_Femur/R_Tibia/R_Tarsus.1/R_Tarsus.2/R.Digit.3.1
+        weight: 1
+      - path: RootNode/Pelvis/R_Femur/R_Tibia/R_Tarsus.1/R_Tarsus.2/R.Digit.3.1/R.Digit.3.2
+        weight: 1
+      - path: RootNode/Pelvis/R_Femur/R_Tibia/R_Tarsus.1/R_Tarsus.2/R.Digit.3.1/R.Digit.3.2/R.Digit.3.3
+        weight: 1
+      - path: RootNode/Pelvis/R_Femur/R_Tibia/R_Tarsus.1/R_Tarsus.2/R.Digit.4.1
+        weight: 1
+      - path: RootNode/Pelvis/R_Femur/R_Tibia/R_Tarsus.1/R_Tarsus.2/R.Digit.4.1/R.Digit.4.2
+        weight: 1
+      - path: RootNode/Pelvis/Spline.1
+        weight: 1
+      - path: RootNode/Pelvis/Spline.1/Spine.2
+        weight: 1
+      - path: RootNode/Pelvis/Spline.1/Spine.2/L_Breast
+        weight: 1
+      - path: RootNode/Pelvis/Spline.1/Spine.2/R_Breast
+        weight: 1
+      - path: RootNode/Pelvis/Spline.1/Spine.2/Spine.3
+        weight: 1
+      - path: RootNode/Pelvis/Spline.1/Spine.2/Spine.3/Keel.1
+        weight: 1
+      - path: RootNode/Pelvis/Spline.1/Spine.2/Spine.3/Neck.1
+        weight: 1
+      - path: RootNode/Pelvis/Spline.1/Spine.2/Spine.3/Neck.1/Neck.2
+        weight: 1
+      - path: RootNode/Pelvis/Spline.1/Spine.2/Spine.3/Neck.1/Neck.2/Neck.2_L
+        weight: 1
+      - path: RootNode/Pelvis/Spline.1/Spine.2/Spine.3/Neck.1/Neck.2/Neck.2_L/Neck.2_L.001
+        weight: 1
+      - path: RootNode/Pelvis/Spline.1/Spine.2/Spine.3/Neck.1/Neck.2/Neck.2_R
+        weight: 1
+      - path: RootNode/Pelvis/Spline.1/Spine.2/Spine.3/Neck.1/Neck.2/Neck.2_R/Neck.2_R.001
+        weight: 1
+      - path: RootNode/Pelvis/Spline.1/Spine.2/Spine.3/Neck.1/Neck.2/Neck.3
+        weight: 1
+      - path: RootNode/Pelvis/Spline.1/Spine.2/Spine.3/Neck.1/Neck.2/Neck.3/Neck.4
+        weight: 1
+      - path: RootNode/Pelvis/Spline.1/Spine.2/Spine.3/Neck.1/Neck.2/Neck.3/Neck.4/Neck.5
+        weight: 1
+      - path: RootNode/Pelvis/Spline.1/Spine.2/Spine.3/Neck.1/Neck.2/Neck.3/Neck.4/Neck.5/Head
+        weight: 1
+      - path: RootNode/Pelvis/Spline.1/Spine.2/Spine.3/Neck.1/Neck.2/Neck.3/Neck.4/Neck.5/Head/Beak
+        weight: 1
+      - path: RootNode/Pelvis/Spline.1/Spine.2/Spine.3/Neck.1/Neck.2/Neck.3/Neck.4/Neck.5/Head/L_Eye
+        weight: 1
+      - path: RootNode/Pelvis/Spline.1/Spine.2/Spine.3/Neck.1/Neck.2/Neck.3/Neck.4/Neck.5/Head/L_LowerEyelid
+        weight: 1
+      - path: RootNode/Pelvis/Spline.1/Spine.2/Spine.3/Neck.1/Neck.2/Neck.3/Neck.4/Neck.5/Head/L_ThirdEyelid
+        weight: 1
+      - path: RootNode/Pelvis/Spline.1/Spine.2/Spine.3/Neck.1/Neck.2/Neck.3/Neck.4/Neck.5/Head/L_UpperEyeLid
+        weight: 1
+      - path: RootNode/Pelvis/Spline.1/Spine.2/Spine.3/Neck.1/Neck.2/Neck.3/Neck.4/Neck.5/Head/R_Eye
+        weight: 1
+      - path: RootNode/Pelvis/Spline.1/Spine.2/Spine.3/Neck.1/Neck.2/Neck.3/Neck.4/Neck.5/Head/R_LowerEyelid
+        weight: 1
+      - path: RootNode/Pelvis/Spline.1/Spine.2/Spine.3/Neck.1/Neck.2/Neck.3/Neck.4/Neck.5/Head/R_ThirdEyelid
+        weight: 1
+      - path: RootNode/Pelvis/Spline.1/Spine.2/Spine.3/Neck.1/Neck.2/Neck.3/Neck.4/Neck.5/Head/R_UpperEyeLid
+        weight: 1
+      - path: RootNode/Pelvis/Tail.1
+        weight: 1
+      - path: RootNode/Pelvis/Tail.1/L_TailFeather.1.1
+        weight: 1
+      - path: RootNode/Pelvis/Tail.1/R_TailFeather.1.1
+        weight: 1
+      maskType: 0
+      maskSource: {instanceID: 0}
+    isReadable: 1
+  meshes:
+    lODScreenPercentages: []
+    globalScale: 1
+    meshCompression: 0
+    addColliders: 0
+    importBlendShapes: 1
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    optimizeMeshForGPU: 1
+    keepQuads: 0
+    weldVertices: 1
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVPackMargin: 4
+    useFileScale: 1
+  tangentSpace:
+    normalSmoothAngle: 60
+    splitTangentsAcrossUV: 1
+    normalImportMode: 0
+    tangentImportMode: 1
+  importAnimation: 1
+  copyAvatar: 0
+  humanDescription:
+    human: []
+    skeleton: []
+    armTwist: .5
+    foreArmTwist: .5
+    upperLegTwist: .5
+    legTwist: .5
+    armStretch: .0500000007
+    legStretch: .0500000007
+    feetSpacing: 0
+    rootMotionBoneName: RootNode
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  animationType: 2
+  additionalBone: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

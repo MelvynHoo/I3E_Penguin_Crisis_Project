@@ -1,0 +1,152 @@
+fileFormatVersion: 2
+guid: 084ab3a8c47a245b4a0901779281fe91
+timeCreated: 1474331335
+licenseType: Store
+ModelImporter:
+  serializedVersion: 18
+  fileIDToRecycleName:
+    100000: Calf_L
+    100002: Calf_R
+    100004: Clavicle_L
+    100006: Clavicle_R
+    100008: Eye_L
+    100010: Eye_R
+    100012: FirstEyelid_L
+    100014: FirstEyelid_R
+    100016: Foot_L
+    100018: Foot_R
+    100020: Forearm_L
+    100022: Forearm_R
+    100024: GalapagosGiantTortoiseSaddleBackLOD0
+    100026: GalapagosGiantTortoiseSaddleBackLOD1
+    100028: Hand_L
+    100030: Hand_R
+    100032: Head
+    100034: Jaw
+    100036: Jaw.1
+    100038: Neck.005
+    100040: Neck.1
+    100042: Neck.2
+    100044: Neck.3
+    100046: Neck.4
+    100048: Pelvis
+    100050: Root
+    100052: //RootNode
+    100054: SecondEyelid_L
+    100056: SecondEyelid_R
+    100058: Spine
+    100060: Tail.1
+    100062: Tail.2
+    100064: Thigh_L
+    100066: Thigh_R
+    100068: ThirdEyelid_L
+    100070: ThirdEyelid_R
+    100072: Tongue.1
+    100074: Tongue.3
+    100076: UnderNeck
+    100078: UpperArm_L
+    100080: UpperArm_R
+    400000: Calf_L
+    400002: Calf_R
+    400004: Clavicle_L
+    400006: Clavicle_R
+    400008: Eye_L
+    400010: Eye_R
+    400012: FirstEyelid_L
+    400014: FirstEyelid_R
+    400016: Foot_L
+    400018: Foot_R
+    400020: Forearm_L
+    400022: Forearm_R
+    400024: GalapagosGiantTortoiseSaddleBackLOD0
+    400026: GalapagosGiantTortoiseSaddleBackLOD1
+    400028: Hand_L
+    400030: Hand_R
+    400032: Head
+    400034: Jaw
+    400036: Jaw.1
+    400038: Neck.005
+    400040: Neck.1
+    400042: Neck.2
+    400044: Neck.3
+    400046: Neck.4
+    400048: Pelvis
+    400050: Root
+    400052: //RootNode
+    400054: SecondEyelid_L
+    400056: SecondEyelid_R
+    400058: Spine
+    400060: Tail.1
+    400062: Tail.2
+    400064: Thigh_L
+    400066: Thigh_R
+    400068: ThirdEyelid_L
+    400070: ThirdEyelid_R
+    400072: Tongue.1
+    400074: Tongue.3
+    400076: UnderNeck
+    400078: UpperArm_L
+    400080: UpperArm_R
+    4300000: GalapagosGiantTortoiseSaddleBackLOD1
+    4300002: GalapagosGiantTortoiseSaddleBackLOD0
+    9500000: //RootNode
+    13700000: GalapagosGiantTortoiseSaddleBackLOD0
+    13700002: GalapagosGiantTortoiseSaddleBackLOD1
+  materials:
+    importMaterials: 1
+    materialName: 0
+    materialSearch: 1
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    optimizeGameObjects: 0
+    motionNodeName: 
+    animationCompression: 1
+    animationRotationError: .5
+    animationPositionError: .5
+    animationScaleError: .5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    clipAnimations: []
+    isReadable: 1
+  meshes:
+    lODScreenPercentages: []
+    globalScale: 1
+    meshCompression: 0
+    addColliders: 0
+    importBlendShapes: 1
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    optimizeMeshForGPU: 1
+    keepQuads: 0
+    weldVertices: 1
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVPackMargin: 4
+    useFileScale: 1
+  tangentSpace:
+    normalSmoothAngle: 60
+    splitTangentsAcrossUV: 1
+    normalImportMode: 0
+    tangentImportMode: 1
+  importAnimation: 1
+  copyAvatar: 0
+  humanDescription:
+    human: []
+    skeleton: []
+    armTwist: .5
+    foreArmTwist: .5
+    upperLegTwist: .5
+    legTwist: .5
+    armStretch: .0500000007
+    legStretch: .0500000007
+    feetSpacing: 0
+    rootMotionBoneName: Root
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  animationType: 2
+  additionalBone: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
