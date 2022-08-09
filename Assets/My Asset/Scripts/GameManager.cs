@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using TMPro;
 
 public class GameManager : MonoBehaviour
 {
@@ -40,6 +41,17 @@ public class GameManager : MonoBehaviour
     /// </summary>
     public GameObject completeMenu;
 
+    #region Objective Related Variables
+    /// <summary>
+    /// Generator Room Keeping track of many generator is destroy.
+    /// </summary>
+    public int generatorCount = 0;
+    public int pipesCount = 0;
+    public int computerCount = 0;
+    public TextMeshProUGUI NoGenerator;
+    public TextMeshProUGUI NoPipes;
+    public TextMeshProUGUI NoComputer;
+    #endregion
     private void Awake()
     {
         // Check whether there is an instance
@@ -109,6 +121,7 @@ public class GameManager : MonoBehaviour
             Time.timeScale = 0f;
             gamePaused = true;
             pauseMenu.SetActive(gamePaused);
+
         }
         else
         {
@@ -144,6 +157,8 @@ public class GameManager : MonoBehaviour
         activePlayer.ResetPlayer();
         ToggleRespawnMenu();
         StartGame();
+        generatorCount = 0;
+        NoGenerator.text = "Destroyed Generator: " + generatorCount.ToString();
     }
 
     /// <summary>
@@ -169,5 +184,49 @@ public class GameManager : MonoBehaviour
     public void ShowCompleteMenu()
     {
         completeMenu.SetActive(true);
+    }
+    public void BossPenguinDialogue()
+    {
+        Debug.Log("Boss penguin talking");
+    }
+
+    public void TrackGenerator(int destroyedGens)
+    {
+        generatorCount += destroyedGens;
+        //Debug.Log("No of Generator Destroyed" + noOfGenerator);
+        if (generatorCount < 3)
+        {
+            NoGenerator.text = "Destroyed Generator: " + generatorCount.ToString();
+        }
+        else
+        {
+            NoGenerator.text = "Destroyed Generator: Completed";
+        }
+    }
+    public void TrackComputer(int destroyedComputer)
+    {
+        computerCount += destroyedComputer;
+        //Debug.Log("No of Generator Destroyed" + noOfGenerator);
+        if (computerCount < 6)
+        {
+            NoComputer.text = "Destroyed Computer: " + computerCount.ToString();
+        }
+        else
+        {
+            NoComputer.text = "Destroyed Computer: Completed";
+        }
+    }
+    public void TrackPipes(int destroyedPipes)
+    {
+        pipesCount += destroyedPipes;
+        //Debug.Log("No of Generator Destroyed" + noOfGenerator);
+        if (pipesCount < 4)
+        {
+            NoPipes.text = "Destroyed Pipes: " + pipesCount.ToString();
+        }
+        else
+        {
+            NoPipes.text = "Destroyed Pipes: Completed";
+        }
     }
 }

@@ -10,6 +10,8 @@ using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.InputSystem;
 using TMPro;
+using UnityEngine.AI;
+using System.Threading.Tasks;
 
 /// <summary>
 /// The class responsible for the player mechanics.
@@ -34,6 +36,16 @@ public class Player : MonoBehaviour
     Vector3 headRotationInput;
 
     /// <summary>
+    /// To limit the camera rotation.
+    /// </summary>
+    [Range(1.0f, 10.0f)]
+    public float camSensitivity = 1.0f;
+    public GameObject myHead;
+    public float headTopRotateLimit;
+    public float headBotRotateLimit;
+    Rigidbody myRigidbody;
+
+    /// <summary>
     /// The movement speed of the player per second.
     /// </summary>
     public float baseMoveSpeed = 5f;
@@ -41,7 +53,7 @@ public class Player : MonoBehaviour
     /// <summary>
     /// The speed at which the player rotates
     /// </summary>
-    public float rotationSpeed = 60f;
+    public float rotationSpeed = 0.075f;
 
     /// <summary>
     /// The total amount of stamina the player will have
@@ -56,17 +68,19 @@ public class Player : MonoBehaviour
     /// <summary>
     /// Amount of stamina regen per second
     /// </summary>
-    private float staminaRegen = 0.5f;
+    private float staminaRegen = 1f;
 
     /// <summary>
     /// Amount of stamina used per second when sprinting
     /// </summary>
-    private float sprintDrainRate = 1.5f;
+    private float sprintDrainRate = 1f;
 
     /// <summary>
     /// True when the player is sprinting
     /// </summary>
     private bool sprint;
+
+    //private bool gamePause;
 
     /// <summary>
     /// The amount to multiply the base movement speed when sprinting
@@ -135,7 +149,17 @@ public class Player : MonoBehaviour
     /// The animator of the player
     /// </summary>
     public Animator playerAnimator;
-
+    #region Combat Related Variables
+    /// <summary>
+    /// Combat mechanic
+    /// </summary>
+    public GameObject weaponAnimation;
+    public GameObject playerWeapon;
+    bool toHit = false;
+    int haveWeapon = 0;
+    float meleeStaminaCost = 2;
+    #endregion
+    
     public static bool hasKey;
 
     /// <summary>
@@ -147,21 +171,12 @@ public class Player : MonoBehaviour
 
         currentHealth = totalHealth;
         currentStamina = totalStamina;
-        jumpStaminaCost = totalStamina * 0.3f;
+        jumpStaminaCost = totalStamina * 0.2f;
     }
 
     private void Start()
     {
-        bool checkA = false;
-        if(checkA)
-        {
-            Debug.Log("Check is true");
-        }
-        else
-        {
-            Debug.Log("Check is false");
-        }
-
+       
     }
 
     // Update is called once per frame
@@ -172,20 +187,54 @@ public class Player : MonoBehaviour
             Rotation();
             Movement();
             Raycasting();
+            
         }
         interact = false;
-
+        toHit = false;
     }
 
     /// <summary>
     /// Controls the rotation of the player.
     /// </summary>
+   
+    
     private void Rotation()
     {
         // Apply the rotation multiplied by the rotation speed.
-        transform.rotation = Quaternion.Euler(transform.rotation.eulerAngles + rotationInput * rotationSpeed * Time.deltaTime);
-        playerCamera.transform.rotation = Quaternion.Euler(playerCamera.transform.rotation.eulerAngles + headRotationInput * rotationSpeed * Time.deltaTime);
+
+        //Debug.Log("headRotationInput.x: " + headRotationInput.x);
+        //Debug.Log("headRotationInput.y: " + headRotationInput.y);
+
+        //Select the player camera
+        //Vector3 headRot = playerCamera.transform.rotation.eulerAngles;
+        Vector3 headRot = myHead.transform.rotation.eulerAngles;
+        //Get the X axis multiple by the rotation speed (Rotation Speed set to 0.075)
+        headRot.x += headRotationInput.x * rotationSpeed;
+        //Debug.Log("headRotX: " + headRot.x);
+
+        //If the Top Head Rotate is over 270 or below 270. Lock the camera to 270 (Set Top limit to 270 in unity)
+        if (headRot.x > headBotRotateLimit && headRotationInput.x < 0 && headRot.x < headTopRotateLimit)
+        {
+            headRot.x = headTopRotateLimit;
+            //Debug.Log("Over Top");
+        }
+        //If the Top Head Rotate is over 90 or below 90. Lock the camera to 90 (Set Bottom limit to 90 in unity)
+        else if (headRot.x < headTopRotateLimit && headRotationInput.x > 0 && headRot.x > headBotRotateLimit)
+        {
+            headRot.x = headBotRotateLimit;
+            //Debug.Log("Over Bottom");
+        }
+        //Set the rotation for the camera
+        //playerCamera.transform.rotation = Quaternion.Euler(headRot);
+        myHead.transform.rotation = Quaternion.Euler(headRot);
+        //Give the player to move the body
+        Vector3 bodyRotation = transform.rotation.eulerAngles;
+        bodyRotation += rotationInput * rotationSpeed;
+        transform.rotation = Quaternion.Euler(bodyRotation);
+
     }
+    
+
 
     /// <summary>
     /// Controls the movement and sprinting of the player.
@@ -255,7 +304,7 @@ public class Player : MonoBehaviour
         if (Physics.Raycast(playerCamera.transform.position, playerCamera.transform.forward, out hitInfo, interactionDistance))
         {
             // Print the name of the object hit. For debugging purposes.
-            Debug.Log(hitInfo.transform.name);
+            //Debug.Log(hitInfo.transform.name);
         }
     }
 
@@ -268,6 +317,7 @@ public class Player : MonoBehaviour
         playerAnimator.applyRootMotion = false;
         playerAnimator.SetBool("PlayerDead", isDead);
         GameManager.instance.ToggleRespawnMenu();
+
     }
 
     /// <summary>
@@ -276,6 +326,7 @@ public class Player : MonoBehaviour
     /// <param name="damage">The amount to damage the player by</param>
     public void TakeDamage(float damage)
     {
+        
         if(!isDead)
         {
             currentHealth -= damage;
@@ -324,18 +375,28 @@ public class Player : MonoBehaviour
     /// <param name="collision"></param>
     private void OnCollisionEnter(Collision collision)
     {
+        canJump = true;
+        /*
         if(collision.gameObject.tag == "Ground")
         {
             canJump = true;
+        }
+        */
+        if (collision.gameObject.tag == "Guards")
+        {
+            
         }
     }
 
     private void OnCollisionExit(Collision collision)
     {
+        canJump = true;
+        /*
         if (collision.gameObject.tag == "Ground")
         {
             canJump = false;
         }
+        */
     }
 
     /// <summary>
@@ -366,7 +427,21 @@ public class Player : MonoBehaviour
     /// <summary>
     /// Called when the Fire action is detected.
     /// </summary>
-    void OnFire()
+    async void OnFire()
+    {
+        if (currentStamina - meleeStaminaCost > 0)
+        {
+            toHit = true;
+            //currentStamina -= meleeStaminaCost;
+            weaponAnimation.GetComponent<Animator>().Play("Weapon Swing");
+            playerWeapon.GetComponent<Collider>().enabled = true;
+            await Task.Delay(200);
+            playerWeapon.GetComponent<Collider>().enabled = false;
+            await Task.Delay(250);
+            toHit = false;
+        }
+    }
+    void OnInteract()
     {
         interact = true;
     }
@@ -385,6 +460,18 @@ public class Player : MonoBehaviour
     void OnPause()
     {
         GameManager.instance.TogglePause();
+        /*
+        if (!gamePause)
+        {
+            rotationSpeed = 0;
+            gamePause = true;
+        }
+        else
+        {
+            rotationSpeed = 0.075f;
+            gamePause = false;
+        }
+        */
     }
 
     /// <summary>

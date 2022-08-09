@@ -82,4 +82,15 @@ public class Switch : MonoBehaviour
             }
         }
     }
+
+    private void OnTriggerStay(Collider other)
+    {
+        // Check if the player is in the trigger
+        if (other.transform.tag == "Player")
+        {
+            Debug.Log(gameObject.name + " interacted");
+            // use the SceneManager to load the specified scene index.
+            SceneManager.LoadScene(sceneToLoad);
+        }
+    }
 }
