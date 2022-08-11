@@ -5087,7 +5087,7 @@ PrefabInstance:
     - target: {fileID: 8653140689266353504, guid: 44c40acc32c6da5439783dc5b7452ccf,
         type: 3}
       propertyPath: turnOffDamage
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8653140689266353504, guid: 44c40acc32c6da5439783dc5b7452ccf,
         type: 3}
