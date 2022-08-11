@@ -313,11 +313,6 @@ MonoBehaviour:
   currentState: 
   nextState: 
   changeDuration: 3
-  colorArray:
-  - {r: 0.0046167374, g: 1, b: 0, a: 0}
-  - {r: 0.95004034, g: 1, b: 0, a: 0}
-  - {r: 1, g: 0.5222567, b: 0, a: 0}
-  - {r: 0.49056602, g: 0, b: 0.015188199, a: 0}
   healthBar: {fileID: 4312377696872666981}
 --- !u!1 &4312377696872666980
 GameObject:

@@ -351,7 +351,6 @@ MonoBehaviour:
   currentState: 
   nextState: 
   changeDuration: 3
-  colorArray: []
   healthBar: {fileID: 4658375296925929362}
 --- !u!1001 &5501228949085217462
 PrefabInstance:
