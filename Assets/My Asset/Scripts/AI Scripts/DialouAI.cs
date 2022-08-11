@@ -77,12 +77,22 @@ public class DialouAI : MonoBehaviour
         }
         SwitchState();
     }
+    /*
+    private void OnCollisionEnter(Collision collision)
+    {
+        if (collision.transform.tag == "Player")
+        {
+            transform.gameObject.GetComponentInParent<GameManager>().BossPenguinDialogue();
 
-    private void OnTrigger(Collider other)
+        }
+    }
+    */
+    private void OnTriggerEnter(Collider other)
     {
         if (other.transform.tag == "Player")
         {
-            transform.gameObject.GetComponentInParent<GameManager>().BossPenguinDialogue();
+            //other.GetComponentInParent<GameManager>().BossPenguinDialogue();
+            GameManager.instance.BossPenguinDialogue();
 
         }
     }

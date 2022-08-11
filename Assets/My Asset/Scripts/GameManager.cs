@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using TMPro;
+using System.Threading.Tasks;
+
 
 public class GameManager : MonoBehaviour
 {
@@ -40,6 +42,12 @@ public class GameManager : MonoBehaviour
     /// The end menu of the game.
     /// </summary>
     public GameObject completeMenu;
+
+    #region Dialogue Related Bariables
+    bool talkOnce = false;
+    public TextMeshProUGUI dialogueMessage;
+    public GameObject backgroundDialogue;
+    #endregion
 
     #region Objective Related Variables
     /// <summary>
@@ -106,6 +114,9 @@ public class GameManager : MonoBehaviour
                 activePlayer.transform.position = playerSpot.transform.position;
                 activePlayer.transform.rotation = playerSpot.transform.rotation;
             }
+            NoGenerator.text = "";
+            NoComputer.text = "";
+            NoPipes.text = "";
         }
     }
 
@@ -121,7 +132,7 @@ public class GameManager : MonoBehaviour
             Time.timeScale = 0f;
             gamePaused = true;
             pauseMenu.SetActive(gamePaused);
-
+            Player.instance.StopRotation(gamePaused);
         }
         else
         {
@@ -129,6 +140,7 @@ public class GameManager : MonoBehaviour
             Time.timeScale = 1f;
             gamePaused = false;
             pauseMenu.SetActive(gamePaused);
+            Player.instance.StopRotation(gamePaused);
         }
     }
 
@@ -185,9 +197,48 @@ public class GameManager : MonoBehaviour
     {
         completeMenu.SetActive(true);
     }
-    public void BossPenguinDialogue()
+    public async void BossPenguinDialogue()
     {
         Debug.Log("Boss penguin talking");
+        if (!talkOnce)
+        {
+            //backgroundDialogue.SetActive(true);
+            dialogueMessage.text = "Elder Penguin: The humans have come to take away our land.";
+            await Task.Delay(5000);
+            dialogueMessage.text = "Elder Penguin: They have set up their facility in our home! They even changed the colour of our water!";
+            await Task.Delay(5000);
+            dialogueMessage.text = "Elder Penguin: Please help us and do something to stop the humans.";
+            await Task.Delay(3000);
+            NoGenerator.text = "Destroy Generator: 0";
+            NoComputer.text = "Destroy Computer: 0";
+            NoPipes.text = "Destroy Pipes: 0";
+            dialogueMessage.text = "";
+            talkOnce = true;
+        }
+        else
+        {
+            talkOnce = false;
+
+        }
+    }
+
+    public async void PollutedWaterDialogue()
+    {
+        Debug.Log("Boss penguin talking");
+        if (!talkOnce)
+        {
+            //backgroundDialogue.SetActive(true);
+            dialogueMessage.text = "Fellow Penguin: The polluted water is caused by humans dumping toxic waste into the water. This harms the wildlife that live here.";
+            await Task.Delay(4000);
+            //backgroundDialogue.SetActive(false);
+            dialogueMessage.text = "";
+            talkOnce = true;
+        }
+        else
+        {
+            talkOnce = false;
+
+        }
     }
 
     public void TrackGenerator(int destroyedGens)

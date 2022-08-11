@@ -99,6 +99,10 @@ PrefabInstance:
       propertyPath: isSwimming
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 11479580, guid: 14685d94121fe4e6cbaaa7a4e1eb65a1, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 13632718, guid: 14685d94121fe4e6cbaaa7a4e1eb65a1, type: 3}
       propertyPath: m_Material
       value: 

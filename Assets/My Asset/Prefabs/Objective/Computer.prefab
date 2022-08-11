@@ -114,7 +114,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   currentState: 
   nextState: 
+  myRenderer: {fileID: 0}
   changeDuration: 0
+  colorArray: []
   healthBar: {fileID: 2956604233118478967}
 --- !u!1 &4699692588095750017
 GameObject:

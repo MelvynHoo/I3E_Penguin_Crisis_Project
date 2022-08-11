@@ -9,6 +9,7 @@ TagManager:
   - EndZone
   - Hazards
   - Weapon
+  - Polluted Water
   layers:
   - Default
   - TransparentFX

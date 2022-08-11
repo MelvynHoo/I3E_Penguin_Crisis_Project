@@ -18,6 +18,7 @@ using System.Threading.Tasks;
 /// </summary>
 public class Player : MonoBehaviour
 {
+    public static Player instance;
     #region Movement Related Variables
 
     /// <summary>
@@ -80,7 +81,7 @@ public class Player : MonoBehaviour
     /// </summary>
     private bool sprint;
 
-    //private bool gamePause;
+    private bool gamePause;
 
     /// <summary>
     /// The amount to multiply the base movement speed when sprinting
@@ -149,17 +150,22 @@ public class Player : MonoBehaviour
     /// The animator of the player
     /// </summary>
     public Animator playerAnimator;
-    #region Combat Related Variables
+
     /// <summary>
     /// Combat mechanic
     /// </summary>
+    #region Combat Related Variables
     public GameObject weaponAnimation;
     public GameObject playerWeapon;
     bool toHit = false;
     int haveWeapon = 0;
+    bool toEquipWrench = false;
     float meleeStaminaCost = 2;
+
     #endregion
-    
+
+    public GameObject toInteract;
+
     public static bool hasKey;
 
     /// <summary>
@@ -172,6 +178,22 @@ public class Player : MonoBehaviour
         currentHealth = totalHealth;
         currentStamina = totalStamina;
         jumpStaminaCost = totalStamina * 0.2f;
+
+        weaponAnimation.SetActive(false);
+        toInteract.gameObject.SetActive(false);
+
+        // Check whether there is an instance
+        // Check whether the instance is me
+        if (instance != null && instance != this)
+        {
+            // If true, I'm not needed and can be destroyed.
+            Destroy(gameObject);
+        }
+        // If not, set myself as the instance
+        else
+        {
+            instance = this;
+        }
     }
 
     private void Start()
@@ -180,7 +202,7 @@ public class Player : MonoBehaviour
     }
 
     // Update is called once per frame
-    void Update()
+    async void Update()
     {
         if(!isDead)
         {
@@ -188,50 +210,67 @@ public class Player : MonoBehaviour
             Movement();
             Raycasting();
             
+
+
         }
-        interact = false;
         toHit = false;
+        if (interact == true)
+        {
+            await Task.Delay(3000);
+            interact = false;
+
+        }
     }
 
     /// <summary>
     /// Controls the rotation of the player.
     /// </summary>
    
-    
-    private void Rotation()
+    public void StopRotation(bool retrievePause)
     {
-        // Apply the rotation multiplied by the rotation speed.
-
-        //Debug.Log("headRotationInput.x: " + headRotationInput.x);
-        //Debug.Log("headRotationInput.y: " + headRotationInput.y);
-
-        //Select the player camera
-        //Vector3 headRot = playerCamera.transform.rotation.eulerAngles;
-        Vector3 headRot = myHead.transform.rotation.eulerAngles;
-        //Get the X axis multiple by the rotation speed (Rotation Speed set to 0.075)
-        headRot.x += headRotationInput.x * rotationSpeed;
-        //Debug.Log("headRotX: " + headRot.x);
-
-        //If the Top Head Rotate is over 270 or below 270. Lock the camera to 270 (Set Top limit to 270 in unity)
-        if (headRot.x > headBotRotateLimit && headRotationInput.x < 0 && headRot.x < headTopRotateLimit)
+        gamePause = retrievePause;
+    }
+    void Rotation()
+    {
+        if(gamePause == true)
         {
-            headRot.x = headTopRotateLimit;
-            //Debug.Log("Over Top");
+            //Debug.Log("Game Pause");
+            return;
         }
-        //If the Top Head Rotate is over 90 or below 90. Lock the camera to 90 (Set Bottom limit to 90 in unity)
-        else if (headRot.x < headTopRotateLimit && headRotationInput.x > 0 && headRot.x > headBotRotateLimit)
+        else 
         {
-            headRot.x = headBotRotateLimit;
-            //Debug.Log("Over Bottom");
-        }
-        //Set the rotation for the camera
-        //playerCamera.transform.rotation = Quaternion.Euler(headRot);
-        myHead.transform.rotation = Quaternion.Euler(headRot);
-        //Give the player to move the body
-        Vector3 bodyRotation = transform.rotation.eulerAngles;
-        bodyRotation += rotationInput * rotationSpeed;
-        transform.rotation = Quaternion.Euler(bodyRotation);
+            // Apply the rotation multiplied by the rotation speed.
 
+            //Debug.Log("headRotationInput.x: " + headRotationInput.x);
+            //Debug.Log("headRotationInput.y: " + headRotationInput.y);
+
+            //Select the player camera
+            //Vector3 headRot = playerCamera.transform.rotation.eulerAngles;
+            Vector3 headRot = myHead.transform.rotation.eulerAngles;
+            //Get the X axis multiple by the rotation speed (Rotation Speed set to 0.075)
+            headRot.x += headRotationInput.x * rotationSpeed;
+            //Debug.Log("headRotX: " + headRot.x);
+
+            //If the Top Head Rotate is over 270 or below 270. Lock the camera to 270 (Set Top limit to 270 in unity)
+            if (headRot.x > headBotRotateLimit && headRotationInput.x < 0 && headRot.x < headTopRotateLimit)
+            {
+                headRot.x = headTopRotateLimit;
+                //Debug.Log("Over Top");
+            }
+            //If the Top Head Rotate is over 90 or below 90. Lock the camera to 90 (Set Bottom limit to 90 in unity)
+            else if (headRot.x < headTopRotateLimit && headRotationInput.x > 0 && headRot.x > headBotRotateLimit)
+            {
+                headRot.x = headBotRotateLimit;
+                //Debug.Log("Over Bottom");
+            }
+            //Set the rotation for the camera
+            //playerCamera.transform.rotation = Quaternion.Euler(headRot);
+            myHead.transform.rotation = Quaternion.Euler(headRot);
+            //Give the player to move the body
+            Vector3 bodyRotation = transform.rotation.eulerAngles;
+            bodyRotation += rotationInput * rotationSpeed;
+            transform.rotation = Quaternion.Euler(bodyRotation);
+        }  
     }
     
 
@@ -338,6 +377,29 @@ public class Player : MonoBehaviour
         }
     }
 
+    public void TakeWrench(bool canTakeWrench)
+    {
+        toEquipWrench = canTakeWrench;
+        Debug.Log("have Weapons:" + toEquipWrench);
+        toInteract.gameObject.SetActive(true);
+        if (toEquipWrench == interact)
+        {
+            haveWeapon = 1;
+            Debug.Log("have Weapons:" + haveWeapon);
+            if (haveWeapon == 1)
+            {
+                Debug.Log("Taken the wrench");
+                weaponAnimation.SetActive(true);
+
+            }
+        }    
+    }
+
+    public void DontTakeWrench()
+    {
+        toInteract.gameObject.SetActive(false);
+        
+    }
     /// <summary>
     /// Used to reset the player
     /// </summary>
@@ -367,6 +429,11 @@ public class Player : MonoBehaviour
         {
             GameManager.instance.ShowCompleteMenu();
         }
+        else if(other.transform.tag == "Polluted Water")
+        {
+            GameManager.instance.PollutedWaterDialogue();
+        }
+    
     }
 
     /// <summary>
@@ -382,10 +449,7 @@ public class Player : MonoBehaviour
             canJump = true;
         }
         */
-        if (collision.gameObject.tag == "Guards")
-        {
-            
-        }
+        
     }
 
     private void OnCollisionExit(Collision collision)
@@ -435,15 +499,19 @@ public class Player : MonoBehaviour
             //currentStamina -= meleeStaminaCost;
             weaponAnimation.GetComponent<Animator>().Play("Weapon Swing");
             playerWeapon.GetComponent<Collider>().enabled = true;
-            await Task.Delay(200);
+            await Task.Delay(100);
             playerWeapon.GetComponent<Collider>().enabled = false;
-            await Task.Delay(250);
+            await Task.Delay(150);
             toHit = false;
         }
     }
     void OnInteract()
     {
+        Debug.Log("Interact false: " + interact);
         interact = true;
+        Debug.Log("Interact true: " + interact);
+        
+
     }
 
     /// <summary>
@@ -462,13 +530,11 @@ public class Player : MonoBehaviour
         GameManager.instance.TogglePause();
         /*
         if (!gamePause)
-        {
-            rotationSpeed = 0;
+        { 
             gamePause = true;
         }
         else
         {
-            rotationSpeed = 0.075f;
             gamePause = false;
         }
         */
@@ -487,4 +553,5 @@ public class Player : MonoBehaviour
     }
 
     #endregion
+
 }
