@@ -179,6 +179,21 @@ public class Player : MonoBehaviour
 
     public static bool hasKey;
 
+    public TextMeshProUGUI timerText;
+    private float startTime;
+    private bool finished = false;
+
+    private void Start()
+    {
+        startTime = Time.time;
+    }
+
+    public void Finish()
+    {
+        finished = true;
+        timerText.color = Color.yellow;
+    }
+
     /// <summary>
     /// Sets up default values/actions for the Player
     /// </summary>
@@ -210,7 +225,21 @@ public class Player : MonoBehaviour
     // Update is called once per frame
     async void Update()
     {
-        if(!isDead)
+        if (finished)
+        {
+            //return;
+            Debug.Log("Game End");
+        }
+        else
+        {
+            float t = Time.time - startTime;
+            string minutes = ((int)t / 60).ToString("");
+            string seconds = (t % 60).ToString("f2");
+
+            timerText.text = minutes + ":" + seconds;
+        }
+
+        if (!isDead)
         {
             Rotation();
             Movement();
@@ -583,8 +612,11 @@ public class Player : MonoBehaviour
             playerWeapon.GetComponent<Collider>().enabled = false;
             await Task.Delay(150);
             toHit = false;
+            if (haveWeapon == 1)
+            {
+                soundEffect.Play();
+            }
 
-            soundEffect.Play();
         }
     }
     void OnInteract()

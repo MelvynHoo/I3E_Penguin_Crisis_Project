@@ -21,6 +21,14 @@ public class MyEventManager : MonoBehaviour
     [Header("Weapon")]
     public GameObject weaponEquipped;
 
+    [Header("Open Generator Room")]
+    public GameObject toGeneratorRoom;
+
+    [Header("Leave Generator Room")]
+    public GameObject toOutsideTwo;
+
+    [Header("leave Generator Room")]
+    public GameObject toOutsideThree;
 
     /// <summary>
     /// Lock door and unlock door
@@ -48,4 +56,19 @@ public class MyEventManager : MonoBehaviour
     {
         weaponEquipped.SetActive(false);
     }    
+
+    public void OpenGeneratorRoom()
+    {
+        toGeneratorRoom.SetActive(true);
+    }
+
+    public void OpenToOutsideTwo()
+    {
+        toOutsideTwo.SetActive(true);
+    }
+
+    public void OpenToOutsideThree()
+    {
+        toOutsideThree.SetActive(true);
+    }
 }

@@ -157,6 +157,11 @@ public class GameManager : MonoBehaviour
             Debug.Log("Number of Pipes" + pipesCount);
             Debug.Log("Number of Computer" + computerCount);
         }
+        if (SceneManager.GetActiveScene().buildIndex == 2)
+        {
+            NoPipes.text = "Destroyed Pipes: Completed";
+            NoGenerator.text = "Destroyed Generator: 0";
+        }
         
     }
 
@@ -335,6 +340,7 @@ public class GameManager : MonoBehaviour
         {
             NoGenerator.text = "Destroyed Generator: Completed";
             NoComputer.text = "Destroyed Computer: 0";
+            MyEventManager.instance.OpenToOutsideTwo();
         }
     }
     public void TrackComputer(int destroyedComputer)
@@ -348,6 +354,7 @@ public class GameManager : MonoBehaviour
         else
         {
             NoComputer.text = "Destroyed Computer: Completed";
+            MyEventManager.instance.OpenToOutsideThree();
         }
     }
     public void TrackPipes(int destroyedPipes)
@@ -362,6 +369,7 @@ public class GameManager : MonoBehaviour
         {
             NoPipes.text = "Destroyed Pipes: Completed";
             NoGenerator.text = "Destroyed Generator: 0";
+            MyEventManager.instance.OpenGeneratorRoom();
         }
     }
 }
