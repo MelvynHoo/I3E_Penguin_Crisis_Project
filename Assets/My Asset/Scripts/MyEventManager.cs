@@ -20,19 +20,12 @@ public class MyEventManager : MonoBehaviour
     /// </summary>
     [Header("Weapon")]
     public GameObject weaponEquipped;
-    
-    [Header("Office Area")]
-    public GameObject computerOne;
-    public GameObject computerTwo;
-    public GameObject computerThree;
-    public GameObject computerFour;
-    public GameObject computerFive;
-    public GameObject computerSix;
-    public GameObject waterDispenser;
+
+
     /// <summary>
     /// Lock door and unlock door
     /// </summary>
- 
+
     // Start is called before the first frame update
 
     private void Awake()
@@ -55,30 +48,4 @@ public class MyEventManager : MonoBehaviour
     {
         weaponEquipped.SetActive(false);
     }    
-    /// <summary>
-    /// Close of the area to the spaceship from lava area
-    /// </summary>
-    public void GeneratorRoom()
-    {
-        
-    }
-    
-    /// <summary>
-    /// Called when th player reach the end and interact with the rocks blocking the pathway
-    /// </summary>
-    public void AlternativeWay()
-    {
-        /*
-        Debug.Log("AlternativeWay Called");
-        endDynamite.SetActive(true);
-        await Task.Delay(5000);
-        endBorder.SetActive(false);
-        endDynamite.SetActive(false);
-        unlockedLever.SetActive(true);
-        lockedLever.SetActive(false);
-        activeExplosion.SetActive(true);
-        await Task.Delay(3000);
-        activeExplosion.SetActive(false);
-        */
-    }
 }

@@ -12,6 +12,10 @@ TagManager:
   - Polluted Water
   - Iceberg
   - Ending
+  - Pipes
+  - Generator
+  - Computer
+  - Food
   layers:
   - Default
   - TransparentFX

@@ -949,7 +949,9 @@ MonoBehaviour:
   playerAnimator: {fileID: 8494541700006526889}
   weaponAnimation: {fileID: 5363719763683149236}
   playerWeapon: {fileID: 8654964066460207211}
+  developerWrench: 0
   toInteract: {fileID: 4301184441976386765}
+  waterDisplay: {fileID: 0}
 --- !u!114 &8494541700872327764
 MonoBehaviour:
   m_ObjectHideFlags: 0

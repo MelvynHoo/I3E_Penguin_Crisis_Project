@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 using TMPro;
 
 public class ForGenerator : MonoBehaviour
@@ -9,38 +10,36 @@ public class ForGenerator : MonoBehaviour
     public static ForGenerator instance;
     public string currentState;
     public string nextState;
-    //public MeshRenderer myRenderer;
 
-    //private Color startColor;
-
-    public float changeDuration;
-    private float currentDuration;
     int destroyedGens = 0;
 
-    //public Color[] colorArray;
-    private int colorIndex = 0;
+    #region Health Related Variables
+    /// <summary>
+    /// The maximum HP of the object
+    /// </summary>
+    float maxHP = 100f;
+    /// <summary>
+    /// The current HP of the object.
+    /// </summary>
+    float currentHP;
+    /// <summary>
+    /// The onscreen text used to display the HP.
+    /// </summary>
+    public Scrollbar healthBar;
+    #endregion
 
-    private float recoveryTime;
-    private float recoveringTime;
+    public GameObject objectVFX1;
+    public GameObject objectVFX2;
+    //public TextMeshProUGUI healthBar;
 
-    public TextMeshProUGUI healthBar;
-    int currentHealth;
-    int updateHealth;
-    
     // Start is called before the first frame update
     void Start()
     {
-        //startColor = myRenderer.material.color;
-        //myRenderer.material.color = colorArray[colorIndex];
+        currentHP = maxHP;
+        healthBar.size = currentHP / maxHP;
 
         currentState = "Normal";
         nextState = currentState;
-
-        currentHealth = 4;
-        updateHealth = currentHealth;
-
-        recoveryTime = 3f;
-
         SwitchState();
     }
 
@@ -48,120 +47,66 @@ public class ForGenerator : MonoBehaviour
     void Update()
     {
 
-        if (colorIndex == 0)
-        {
-            nextState = "Normal";
-            updateHealth = 4;
-            healthBar.text = updateHealth.ToString();
-        }
-
-        else if (colorIndex == 1)
-        {
-            nextState = "Okay";
-            updateHealth = 3;
-            healthBar.text = updateHealth.ToString();
-        }
-
-        else if (colorIndex == 2)
-        {
-            nextState = "Hurt";
-            updateHealth = 2;
-            healthBar.text = updateHealth.ToString();
-        }
-
-        else if (colorIndex == 3)
-        {
-            nextState = "Critical";
-            updateHealth = 1;
-            healthBar.text = updateHealth.ToString();
-            /*
-            // Health will recover within the time given
-            recoveringTime += Time.deltaTime;
-            if (recoveryTime < recoveringTime)
-            {
-
-                nextState = "Hurt";
-                colorIndex = 2;
-                recoveringTime = 0;
-                updateHealth = 2;
-                healthBar.text = updateHealth.ToString();
-            }
-            */
-        }
-
-        else if (colorIndex >= 4)
-        {
-            updateHealth = 0;
-            healthBar.text = updateHealth.ToString();
-            nextState = "Destroyed";
-        }
-
         if (currentState != nextState)
         {
             currentState = nextState;
         }
-
-        //Debug.Log("Color Index: " + colorIndex);
-    }
-
-    /// <summary>
-    /// Cannot be used.
-    /// </summary>
-    /*
-    private void OnCollisionEnter(Collision collision)
-    {
-        if (collision.gameObject.tag == "Weapon")
+        else if (currentHP == maxHP)
         {
-            ++colorIndex;
+            nextState = "Normal";
+            healthBar.size = currentHP / maxHP;
         }
-    }
-    */
-    private void OnTriggerEnter(Collider other)
-    {
-        if (other.gameObject.tag == "Weapon")
+        else if (currentHP == 30)
         {
-            ++colorIndex;
-            
+            nextState = "Damage";
+            healthBar.size = currentHP / maxHP;
         }
+        else if (currentHP == 10)
+        {
+            nextState = "Critical";
+            healthBar.size = currentHP / maxHP;
+        }
+        else if (currentHP <= 0)
+        {
+            nextState = "Destroyed";
+        }
+        //Debug.Log("currentState: " + currentState);
     }
-    
+
     void SwitchState()
     {
         StartCoroutine(currentState);
     }
-    // When full health, color is green
+    public void TakeDamage(float damage)
+    {
+        //Debug.Log("Received damage: " + damage);
+        currentHP -= damage;
+        //Debug.Log("Enemy Health: " + currentHP);
+        healthBar.size = currentHP / maxHP;
+        //hpDisplay.text = currentHP.ToString();
+        if (currentHP <= 0)
+        {
+            currentHP = 0;
+        }
+
+    }
+
     IEnumerator Normal()
     {
-        //Debug.Log("Current health: " + updateHealth);
         while (currentState == "Normal")
         {
-            //Color newColor = colorArray[colorIndex];
-            //myRenderer.material.color = newColor;
+            healthBar.size = currentHP / maxHP;
             yield return new WaitForEndOfFrame();
+        }
+        SwitchState();
+    }
+    IEnumerator Damage()
+    {
 
-        }
-        SwitchState();
-    }
-    // When taken damage once, color is yellow
-    IEnumerator Okay()
-    {
         //Debug.Log("Current health: " + updateHealth);
-        while (currentState == "Okay")
+        while (currentState == "Damage")
         {
-            //Color newColor = colorArray[colorIndex];
-            //myRenderer.material.color = newColor;
-            yield return new WaitForEndOfFrame();
-        }
-        SwitchState();
-    }
-    // When taken damage twice, color is orange
-    IEnumerator Hurt()
-    {
-        //Debug.Log("Current health: " + updateHealth);
-        while (currentState == "Hurt")
-        {
-            //Color newColor = colorArray[colorIndex];
-            //myRenderer.material.color = newColor;
+            healthBar.size = currentHP / maxHP;
             yield return new WaitForEndOfFrame();
         }
         SwitchState();
@@ -169,20 +114,19 @@ public class ForGenerator : MonoBehaviour
     // When taken damage thrice, colour is red, then the colour will gradually change colour back to orange
     IEnumerator Critical()
     {
-
+        healthBar.size = currentHP / maxHP;
         while (currentState == "Critical")
         {
-           // Color newColor = colorArray[colorIndex];
+            //Color newColor = colorArray[colorIndex];
             //myRenderer.material.color = newColor;
             yield return new WaitForEndOfFrame();
         }
         SwitchState();
-   
+
     }
     // When taken damage four times, the gameobject will be destroy
     IEnumerator Destroyed()
     {
-
         ++destroyedGens;
         GameManager.instance.TrackGenerator(destroyedGens);
         //gameObject.SetActive(false);

@@ -160,11 +160,20 @@ public class Player : MonoBehaviour
     bool toHit = false;
     int haveWeapon = 0;
     bool toEquipWrench = false;
+    public bool developerWrench = false;
     float meleeStaminaCost = 2;
     #endregion
 
-    #region Interaction Variables
+    #region Interaction Related Variables
     public TextMeshProUGUI toInteract;
+    #endregion
+
+    #region Water/Food Related Variables
+    public int foodValue = 20;
+    bool collectedFood = false;
+    bool toEatFood = false;
+    //public TextMeshProUGUI waterDisplay;
+    bool useOnce = false;
     #endregion
 
     public static bool hasKey;
@@ -205,16 +214,20 @@ public class Player : MonoBehaviour
             Rotation();
             Movement();
             Raycasting();
-            
-
-
         }
         toHit = false;
         if (interact == true)
         {
-            await Task.Delay(3000);
+            await Task.Delay(1000);
             interact = false;
-
+        }
+        if (developerWrench == true)
+        {
+            weaponAnimation.SetActive(true);
+        }
+        if (currentHealth > 100)
+        {
+            currentHealth = 100;
         }
     }
 
@@ -389,6 +402,49 @@ public class Player : MonoBehaviour
             }
         }    
     }
+
+    public void TakeFood(bool canCollectFood)
+    {
+        collectedFood = canCollectFood;
+        //Debug.Log("have water:" + collectedFood);
+        toInteract.text = "(E) Eat fish";
+        if (collectedFood == interact)
+        {
+            toEatFood = true;
+            interact = false;
+            currentHealth += foodValue;
+            healthBar.size = currentHealth / totalHealth;
+            toInteract.text = "";
+            //Debug.Log("Current health:" + currentHealth);
+            //Debug.Log("Eaten food true " + toEatFood);
+        }
+        
+    }
+
+    public void UseWater(bool useWater)
+    {
+        /*
+        toUseWater = useWater;
+        if (haveWater >= 0 && toUseWater == interact)
+        {
+            interact = false;
+            ForComputer.instance.TakeMassiveDamage();
+            toInteract.text = "";
+            useOnce = true;
+            --haveWater;
+            waterDisplay.text = "Water: " + haveWater;
+            Debug.Log("Amount of water: " + haveWater);
+        }
+        else if (haveWater >= 3)
+        {
+            toInteract.text = "(E) Use water to destroyed computer";
+        }
+        else if (haveWater == 0)
+        {
+            toInteract.text = "Need water to destroyed effectively";
+        }
+       */
+    }
     public void ToLoadScene()
     {
         toInteract.text = "(E) To Enter/Exit";
@@ -445,6 +501,17 @@ public class Player : MonoBehaviour
         else if (other.transform.tag == "Ending")
         {
             GameManager.instance.EndingDialogue();
+        }
+
+    }
+
+    private void OnTriggerStay(Collider other)
+    {
+        if (other.transform.tag == "Food" && toEatFood == true)
+        {
+            toEatFood = false;
+            //Debug.Log("Eaten food" + toEatFood);
+            other.GetComponentInParent<ConsumeFood>().DestroyFood();
         }
     }
 

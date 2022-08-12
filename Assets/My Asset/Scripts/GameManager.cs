@@ -86,14 +86,20 @@ public class GameManager : MonoBehaviour
 
     private void Update()
     {
+        
         if (pipesCount >= 4)
         {
-            NoGenerator.text = "Destroy Generator: 0";
+            NoPipes.text = "Destroy Pipes: Completed";
         }
         if (generatorCount >= 3)
         {
-            NoComputer.text = "Destroy Computer: 0";
+            NoGenerator.text = "Destroy Generator: Completed";
         }
+        if (computerCount >= 6)
+        {
+            NoComputer.text = "Destroy Computer: Completed";
+        }
+        
     }
 
     /// <summary>
@@ -127,10 +133,31 @@ public class GameManager : MonoBehaviour
                 activePlayer.transform.position = playerSpot.transform.position;
                 activePlayer.transform.rotation = playerSpot.transform.rotation;
             }
-            NoGenerator.text = "";
-            NoComputer.text = "";
-            NoPipes.text = "";
+            if (pipesCount >= 4)
+            {
+                NoPipes.text = "Destroyed Pipes: Completed";
+                NoGenerator.text = "Destroyed Generator: 0";
+            }
+            else if (generatorCount >= 3)
+            {
+                NoGenerator.text = "Destroyed Generator: Completed";
+                NoComputer.text = "Destroyed Computer: 0";
+            }
+            else if (computerCount >= 6)
+            {
+                NoComputer.text = "Destroyed Computer: Completed";
+            }
+            else
+            {
+                NoComputer.text = "";
+                NoGenerator.text = "";
+                NoPipes.text = "";
+            }
+            Debug.Log("Number of Generator" + generatorCount);
+            Debug.Log("Number of Pipes" + pipesCount);
+            Debug.Log("Number of Computer" + computerCount);
         }
+        
     }
 
     /// <summary>
@@ -230,7 +257,7 @@ public class GameManager : MonoBehaviour
             await Task.Delay(3000);
             //NoGenerator.text = "Destroy Generator: 0";
             //NoComputer.text = "Destroy Computer: 0";
-            NoPipes.text = "Destroy Pipes: 0";
+            NoPipes.text = "Destroyed Pipes: 0";
             dialogueMessage.text = "";
             talkOnce = true;
         }
@@ -307,6 +334,7 @@ public class GameManager : MonoBehaviour
         else
         {
             NoGenerator.text = "Destroyed Generator: Completed";
+            NoComputer.text = "Destroyed Computer: 0";
         }
     }
     public void TrackComputer(int destroyedComputer)
@@ -333,6 +361,7 @@ public class GameManager : MonoBehaviour
         else
         {
             NoPipes.text = "Destroyed Pipes: Completed";
+            NoGenerator.text = "Destroyed Generator: 0";
         }
     }
 }

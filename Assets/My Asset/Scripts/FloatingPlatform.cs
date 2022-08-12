@@ -32,16 +32,16 @@ public class FloatingPlatform : MonoBehaviour
     }
     void IdleComplete()
     {
-        Debug.Log("Idle Animation Complete");
+        //Debug.Log("Idle Animation Complete");
 
     }
     void SinkComplete()
     {
-        Debug.Log("Sink Complete");
+        //Debug.Log("Sink Complete");
     }
     void FloatComplete()
     {
-        Debug.Log("Float Complete");
+        //Debug.Log("Float Complete");
     }
     /// <summary>
     /// To floating the platform back up
@@ -59,7 +59,7 @@ public class FloatingPlatform : MonoBehaviour
         else
         {
             timerToFloat += 1;
-            Debug.Log("Time to float: " + timerToFloat);
+            //Debug.Log("Time to float: " + timerToFloat);
         }
         
     }
