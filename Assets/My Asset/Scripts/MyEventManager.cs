@@ -20,13 +20,7 @@ public class MyEventManager : MonoBehaviour
     /// </summary>
     [Header("Weapon")]
     public GameObject weaponEquipped;
-    /*
-    [Header("Outside Event Area")]
-    public GameObject pipeOne;
-    public GameObject pipeTwo;
-    public GameObject pipeThree;
-    public GameObject pipeFour;
-    */
+    
     [Header("Office Area")]
     public GameObject computerOne;
     public GameObject computerTwo;
@@ -38,9 +32,6 @@ public class MyEventManager : MonoBehaviour
     /// <summary>
     /// Lock door and unlock door
     /// </summary>
-    [Header("To Unlock and Lock door")]
-    public GameObject toGeneratorRoom;
-    public GameObject toOfficeRoom;
  
     // Start is called before the first frame update
 
@@ -62,7 +53,7 @@ public class MyEventManager : MonoBehaviour
     }
     public void Weapon()
     {
-
+        weaponEquipped.SetActive(false);
     }    
     /// <summary>
     /// Close of the area to the spaceship from lava area

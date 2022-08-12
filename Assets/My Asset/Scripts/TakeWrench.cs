@@ -19,7 +19,7 @@ public class TakeWrench : MonoBehaviour
         if (other.transform.tag == "Player")
         {
             canTakeWrench = false;
-            other.GetComponentInParent<Player>().DontTakeWrench();
+            other.GetComponentInParent<Player>().ClearInteraction();
         }
     }
 }

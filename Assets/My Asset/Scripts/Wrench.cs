@@ -30,7 +30,7 @@ public class Wrench : MonoBehaviour
     {
         if (other.transform.tag == "Player")
         {
-            other.GetComponentInParent<Player>().DontTakeWrench();
+            other.GetComponentInParent<Player>().ClearInteraction();
         }
     }
 

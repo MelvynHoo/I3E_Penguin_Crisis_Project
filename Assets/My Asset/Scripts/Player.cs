@@ -161,10 +161,11 @@ public class Player : MonoBehaviour
     int haveWeapon = 0;
     bool toEquipWrench = false;
     float meleeStaminaCost = 2;
-
     #endregion
 
-    public GameObject toInteract;
+    #region Interaction Variables
+    public TextMeshProUGUI toInteract;
+    #endregion
 
     public static bool hasKey;
 
@@ -180,7 +181,7 @@ public class Player : MonoBehaviour
         jumpStaminaCost = totalStamina * 0.2f;
 
         weaponAnimation.SetActive(false);
-        toInteract.gameObject.SetActive(false);
+        toInteract.text = "";
 
         // Check whether there is an instance
         // Check whether the instance is me
@@ -194,11 +195,6 @@ public class Player : MonoBehaviour
         {
             instance = this;
         }
-    }
-
-    private void Start()
-    {
-       
     }
 
     // Update is called once per frame
@@ -273,8 +269,6 @@ public class Player : MonoBehaviour
         }  
     }
     
-
-
     /// <summary>
     /// Controls the movement and sprinting of the player.
     /// </summary>
@@ -380,25 +374,33 @@ public class Player : MonoBehaviour
     public void TakeWrench(bool canTakeWrench)
     {
         toEquipWrench = canTakeWrench;
-        Debug.Log("have Weapons:" + toEquipWrench);
-        toInteract.gameObject.SetActive(true);
+       // Debug.Log("have Weapons:" + toEquipWrench);
+        toInteract.text = "(E) To take Wrench";
         if (toEquipWrench == interact)
         {
             haveWeapon = 1;
-            Debug.Log("have Weapons:" + haveWeapon);
+            toInteract.text = "";
+            //Debug.Log("have Weapons:" + haveWeapon);
             if (haveWeapon == 1)
             {
-                Debug.Log("Taken the wrench");
+                //Debug.Log("Taken the wrench");
                 weaponAnimation.SetActive(true);
-
+                MyEventManager.instance.Weapon();
             }
         }    
     }
-
-    public void DontTakeWrench()
+    public void ToLoadScene()
     {
-        toInteract.gameObject.SetActive(false);
-        
+        toInteract.text = "(E) To Enter/Exit";
+        if (interact == true)
+        {
+            toInteract.text = "";
+            Switch.instance.LoadScene();
+        }
+    }
+    public void ClearInteraction()
+    {
+        toInteract.text = "";
     }
     /// <summary>
     /// Used to reset the player
@@ -413,7 +415,10 @@ public class Player : MonoBehaviour
         currentStamina = totalStamina;
         healthBar.size = 1;
 
+        haveWeapon = 0;
+        weaponAnimation.SetActive(false);
         isDead = false;
+
         playerAnimator.SetBool("PlayerDead", isDead);
     }
 
@@ -507,9 +512,9 @@ public class Player : MonoBehaviour
     }
     void OnInteract()
     {
-        Debug.Log("Interact false: " + interact);
+        
         interact = true;
-        Debug.Log("Interact true: " + interact);
+        
         
 
     }

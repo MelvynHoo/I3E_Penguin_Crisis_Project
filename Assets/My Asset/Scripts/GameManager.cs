@@ -62,9 +62,10 @@ public class GameManager : MonoBehaviour
     #endregion
     private void Awake()
     {
+        dialogueMessage.text = "";
         // Check whether there is an instance
         // Check whether the instance is me
-        if(instance != null && instance != this)
+        if (instance != null && instance != this)
         {
             // If true, I'm not needed and can be destroyed.
             Destroy(gameObject);
@@ -80,6 +81,18 @@ public class GameManager : MonoBehaviour
 
             // Set myself as the instance
             instance = this;
+        }
+    }
+
+    private void Update()
+    {
+        if (pipesCount >= 4)
+        {
+            NoGenerator.text = "Destroy Generator: 0";
+        }
+        if (generatorCount >= 3)
+        {
+            NoComputer.text = "Destroy Computer: 0";
         }
     }
 
@@ -149,6 +162,7 @@ public class GameManager : MonoBehaviour
     /// </summary>
     public void StartGame()
     {
+        
         LoadScene(1);
     }
 
@@ -166,11 +180,16 @@ public class GameManager : MonoBehaviour
     /// </summary>
     public void RestartGame()
     {
-        activePlayer.ResetPlayer();
-        ToggleRespawnMenu();
         StartGame();
+        
+        ToggleRespawnMenu();
+        activePlayer.ResetPlayer();
         generatorCount = 0;
-        NoGenerator.text = "Destroyed Generator: " + generatorCount.ToString();
+        pipesCount = 0;
+        computerCount = 0;
+        NoGenerator.text = "";
+        NoComputer.text = "";
+        NoPipes.text = "";
     }
 
     /// <summary>
@@ -209,8 +228,8 @@ public class GameManager : MonoBehaviour
             await Task.Delay(5000);
             dialogueMessage.text = "Elder Penguin: Please help us and do something to stop the humans.";
             await Task.Delay(3000);
-            NoGenerator.text = "Destroy Generator: 0";
-            NoComputer.text = "Destroy Computer: 0";
+            //NoGenerator.text = "Destroy Generator: 0";
+            //NoComputer.text = "Destroy Computer: 0";
             NoPipes.text = "Destroy Pipes: 0";
             dialogueMessage.text = "";
             talkOnce = true;

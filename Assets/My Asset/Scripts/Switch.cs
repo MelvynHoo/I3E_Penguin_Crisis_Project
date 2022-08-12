@@ -5,6 +5,7 @@ using UnityEngine.SceneManagement;
 
 public class Switch : MonoBehaviour
 {
+    public static Switch instance;
     /// <summary>
     /// The index of the scene to load to.
     /// </summary>
@@ -23,6 +24,24 @@ public class Switch : MonoBehaviour
     AudioSource unlockedAudio;
     AudioSource lockedAudio;
     AudioSource doorKnobAudio;
+
+    private void Awake()
+    {
+
+        // Check whether there is an instance
+        // Check whether the instance is me
+        if (instance != null && instance != this)
+        {
+            // If true, I'm not needed and can be destroyed.
+            Destroy(gameObject);
+        }
+        // If not, set myself as the instance
+        else
+        {
+            instance = this;
+        }
+    }
+
     IEnumerator Locked()
     {
         lockedAudio.Play();
@@ -89,8 +108,22 @@ public class Switch : MonoBehaviour
         if (other.transform.tag == "Player")
         {
             Debug.Log(gameObject.name + " interacted");
-            // use the SceneManager to load the specified scene index.
-            SceneManager.LoadScene(sceneToLoad);
+            
+            other.GetComponentInParent<Player>().ToLoadScene();
         }
+    }
+
+    private void OnTriggerExit(Collider other)
+    {
+        if (other.transform.tag == "Player")
+        {
+            other.GetComponentInParent<Player>().ClearInteraction();
+        }
+    }
+
+    public void LoadScene()
+    {
+        // use the SceneManager to load the specified scene index.
+        SceneManager.LoadScene(sceneToLoad);
     }
 }
