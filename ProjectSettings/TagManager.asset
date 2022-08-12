@@ -10,6 +10,8 @@ TagManager:
   - Hazards
   - Weapon
   - Polluted Water
+  - Iceberg
+  - Ending
   layers:
   - Default
   - TransparentFX

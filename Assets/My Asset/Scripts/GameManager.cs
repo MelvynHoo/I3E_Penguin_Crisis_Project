@@ -259,6 +259,42 @@ public class GameManager : MonoBehaviour
 
         }
     }
+    public async void IcebergDialogue()
+    {
+        Debug.Log("Boss penguin talking");
+        if (!talkOnce)
+        {
+            //backgroundDialogue.SetActive(true);
+            dialogueMessage.text = "Humans have been dumping their trash into the water, it’s sad to see this…";
+            await Task.Delay(4000);
+            //backgroundDialogue.SetActive(false);
+            dialogueMessage.text = "";
+            talkOnce = true;
+        }
+        else
+        {
+            talkOnce = false;
+
+        }
+    }
+    public async void EndingDialogue()
+    {
+        Debug.Log("Boss penguin talking");
+        if (!talkOnce)
+        {
+            //backgroundDialogue.SetActive(true);
+            dialogueMessage.text = "Congrats! You have saved your further harm from humans and their irresponsible behaviors!";
+            await Task.Delay(4000);
+            //backgroundDialogue.SetActive(false);
+            dialogueMessage.text = "";
+            talkOnce = true;
+        }
+        else
+        {
+            talkOnce = false;
+
+        }
+    }
 
     public void TrackGenerator(int destroyedGens)
     {
