@@ -46968,13 +46968,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   weaponEquipped: {fileID: 1251695484}
-  computerOne: {fileID: 0}
-  computerTwo: {fileID: 0}
-  computerThree: {fileID: 0}
-  computerFour: {fileID: 0}
-  computerFive: {fileID: 0}
-  computerSix: {fileID: 0}
-  waterDispenser: {fileID: 0}
 --- !u!4 &1965851426
 Transform:
   m_ObjectHideFlags: 0

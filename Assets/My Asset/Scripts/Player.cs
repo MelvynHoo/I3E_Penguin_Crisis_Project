@@ -151,6 +151,7 @@ public class Player : MonoBehaviour
     /// </summary>
     public Animator playerAnimator;
 
+    public AudioSource soundEffect;
     /// <summary>
     /// Combat mechanic
     /// </summary>
@@ -582,6 +583,8 @@ public class Player : MonoBehaviour
             playerWeapon.GetComponent<Collider>().enabled = false;
             await Task.Delay(150);
             toHit = false;
+
+            soundEffect.Play();
         }
     }
     void OnInteract()
