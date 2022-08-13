@@ -151,7 +151,6 @@ public class Player : MonoBehaviour
     /// </summary>
     public Animator playerAnimator;
 
-    public AudioSource soundEffect;
 
     public GameObject ToOffUI;
     /// <summary>
@@ -165,6 +164,9 @@ public class Player : MonoBehaviour
     bool toEquipWrench = false;
     public bool developerWrench = false;
     float meleeStaminaCost = 2;
+    public GameObject hitIndicator;
+    public AudioSource weaponSound;
+    public AudioSource hitSound;
     #endregion
 
     #region Interaction Related Variables
@@ -208,6 +210,7 @@ public class Player : MonoBehaviour
         jumpStaminaCost = totalStamina * 0.2f;
 
         weaponAnimation.SetActive(false);
+        hitIndicator.SetActive(false);
         toInteract.text = "";
 
         // Check whether there is an instance
@@ -397,6 +400,7 @@ public class Player : MonoBehaviour
         isDead = true;
         playerAnimator.applyRootMotion = false;
         playerAnimator.SetBool("PlayerDead", isDead);
+        hitIndicator.SetActive(false);
         GameManager.instance.ToggleRespawnMenu();
 
     }
@@ -405,17 +409,21 @@ public class Player : MonoBehaviour
     /// Used to damage the player.
     /// </summary>
     /// <param name="damage">The amount to damage the player by</param>
-    public void TakeDamage(float damage)
+    public async void TakeDamage(float damage)
     {
         
         if(!isDead)
         {
             currentHealth -= damage;
             healthBar.size = currentHealth / totalHealth;
-            if(currentHealth <= 0)
+            if (currentHealth <= 0)
             {
                 KillPlayer();
             }
+            hitIndicator.SetActive(true);
+            weaponSound.Play();
+            await Task.Delay(200);
+            hitIndicator.SetActive(false);
         }
     }
 
@@ -533,10 +541,19 @@ public class Player : MonoBehaviour
         {
             GameManager.instance.IcebergDialogue();
         }
+        else if (other.transform.tag == "PipesObjective")
+        {
+            GameManager.instance.ActivatePipesObjective();
+        }
+        else if (other.transform.tag == "FindFacility")
+        {
+            GameManager.instance.ActivateFindFacility();
+        }
         else if (other.transform.tag == "Ending")
         {
             GameManager.instance.EndingDialogue();
         }
+
 
     }
 
@@ -619,7 +636,7 @@ public class Player : MonoBehaviour
             toHit = false;
             if (haveWeapon == 1)
             {
-                soundEffect.Play();
+                weaponSound.Play();
             }
         }
     }

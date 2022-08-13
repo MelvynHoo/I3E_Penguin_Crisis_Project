@@ -22,6 +22,9 @@ public class PatrolAI : MonoBehaviour
 
     public Animator animator;
 
+    public AudioSource walkSound;
+    public AudioSource runningSound;
+
     /// <summary>
     /// The amount of damage this enemy deals to a player
     /// </summary>
@@ -219,8 +222,9 @@ public class PatrolAI : MonoBehaviour
         animator.SetBool("SprintJump", false);
         animator.SetBool("SprintSlide", false);
         //stunnedText.SetActive(false);
+        walkSound.Stop();
+        runningSound.Stop();
 
-        
 
         while (currentState == "Idle")
         {
@@ -237,6 +241,7 @@ public class PatrolAI : MonoBehaviour
         agent.SetDestination(checkpoints[currentCheckpointIndex].position);
         bool hasReached = false;
 
+        walkSound.Play();
         agent.speed = 2.2f;
         animator = GetComponent<Animator>();
         animator.SetBool("Walk", true);
@@ -244,7 +249,6 @@ public class PatrolAI : MonoBehaviour
         animator.SetBool("SprintSlide", false);
         //stunnedText.SetActive(false);
 
-       
 
         while (currentState == "Patrol")
         {
@@ -272,6 +276,7 @@ public class PatrolAI : MonoBehaviour
     IEnumerator Chase()
     {
         //turnOffDamage = false;
+        runningSound.Play();
         agent.speed = 6.5f;
         animator = GetComponent<Animator>();
         animator.SetBool("Walk", false);
@@ -280,7 +285,6 @@ public class PatrolAI : MonoBehaviour
         //animator.SetBool("Collaspe", false);
         //stunnedText.SetActive(false);
 
-       
 
         while (currentState == "Chase")
         {

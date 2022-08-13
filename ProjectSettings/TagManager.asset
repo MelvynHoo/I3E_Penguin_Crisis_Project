@@ -16,6 +16,8 @@ TagManager:
   - Generator
   - Computer
   - Food
+  - PipesObjective
+  - FindFacility
   layers:
   - Default
   - TransparentFX
