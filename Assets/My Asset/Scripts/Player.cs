@@ -152,6 +152,8 @@ public class Player : MonoBehaviour
     public Animator playerAnimator;
 
     public AudioSource soundEffect;
+
+    public GameObject ToOffUI;
     /// <summary>
     /// Combat mechanic
     /// </summary>
@@ -268,6 +270,7 @@ public class Player : MonoBehaviour
     public void StopRotation(bool retrievePause)
     {
         gamePause = retrievePause;
+        ToOffUI.SetActive(false);
     }
     void Rotation()
     {
@@ -275,9 +278,11 @@ public class Player : MonoBehaviour
         {
             //Debug.Log("Game Pause");
             return;
+            
         }
         else 
         {
+            ToOffUI.SetActive(true);
             // Apply the rotation multiplied by the rotation speed.
 
             //Debug.Log("headRotationInput.x: " + headRotationInput.x);
@@ -481,7 +486,7 @@ public class Player : MonoBehaviour
         if (interact == true)
         {
             toInteract.text = "";
-            Switch.instance.LoadScene();
+            SwitchScene.instance.LoadScene();
         }
     }
     public void ClearInteraction()
@@ -616,16 +621,11 @@ public class Player : MonoBehaviour
             {
                 soundEffect.Play();
             }
-
         }
     }
     void OnInteract()
     {
-        
         interact = true;
-        
-        
-
     }
 
     /// <summary>

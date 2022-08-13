@@ -17,7 +17,7 @@ public class ForGenerator : MonoBehaviour
     /// <summary>
     /// The maximum HP of the object
     /// </summary>
-    float maxHP = 100f;
+    float maxHP = 200f;
     /// <summary>
     /// The current HP of the object.
     /// </summary>

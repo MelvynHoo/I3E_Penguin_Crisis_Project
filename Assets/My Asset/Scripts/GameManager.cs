@@ -151,12 +151,12 @@ public class GameManager : MonoBehaviour
             else if (pipesCount >= 4)
             {
                 NoPipes.text = "Destroyed Pipes: Completed";
-                NoGenerator.text = "Destroyed Generator: 0";
+                NoGenerator.text = "Destroyed Generator: 0/3";
             }
             else if (generatorCount >= 3)
             {
                 //NoGenerator.text = "Destroyed Generator: Completed";
-                NoComputer.text = "Destroyed Computer: 0";
+                NoComputer.text = "Destroyed Computer: 0/6";
             }
             else
             {
@@ -171,7 +171,7 @@ public class GameManager : MonoBehaviour
         if (SceneManager.GetActiveScene().buildIndex == 2)
         {
             NoPipes.text = "Destroyed Pipes: Completed";
-            NoGenerator.text = "Destroyed Generator: 0";
+            NoGenerator.text = "Destroyed Generator: 0/3";
         }
         else if (SceneManager.GetActiveScene().buildIndex == 3)
         {
@@ -238,13 +238,14 @@ public class GameManager : MonoBehaviour
         StartGame();
         
         ToggleRespawnMenu();
-        activePlayer.ResetPlayer();
         generatorCount = 0;
         pipesCount = 0;
         computerCount = 0;
         NoGenerator.text = "";
         NoComputer.text = "";
         NoPipes.text = "";
+        //activePlayer.ResetPlayer();
+        Player.instance.ResetPlayer();
     }
 
     /// <summary>
@@ -285,7 +286,7 @@ public class GameManager : MonoBehaviour
             await Task.Delay(3000);
             //NoGenerator.text = "Destroy Generator: 0";
             //NoComputer.text = "Destroy Computer: 0";
-            NoPipes.text = "Destroyed Pipes: 0";
+            NoPipes.text = "Destroyed Pipes: 0/4";
             dialogueMessage.text = "";
             talkOnce = true;
         }
@@ -357,13 +358,13 @@ public class GameManager : MonoBehaviour
         //Debug.Log("No of Generator Destroyed" + noOfGenerator);
         if (generatorCount < 3)
         {
-            NoGenerator.text = "Destroyed Generator: " + generatorCount.ToString();
+            NoGenerator.text = "Destroyed Generator: " + generatorCount.ToString() + "/3";
         }
         
         else
         {
             NoGenerator.text = "Destroyed Generator: Completed";
-            NoComputer.text = "Destroyed Computer: 0";
+            NoComputer.text = "Destroyed Computer: 0/6";
             MyEventManager.instance.OpenToOutsideTwo();
         }
     }
@@ -373,7 +374,7 @@ public class GameManager : MonoBehaviour
         //Debug.Log("No of Generator Destroyed" + noOfGenerator);
         if (computerCount < 6)
         {
-            NoComputer.text = "Destroyed Computer: " + computerCount.ToString();
+            NoComputer.text = "Destroyed Computer: " + computerCount.ToString() + "/6";
         }
         
         else
@@ -388,14 +389,14 @@ public class GameManager : MonoBehaviour
         //Debug.Log("No of Generator Destroyed" + noOfGenerator);
         if (pipesCount < 4)
         {
-            NoPipes.text = "Destroyed Pipes: " + pipesCount.ToString();
+            NoPipes.text = "Destroyed Pipes: " + pipesCount.ToString() + "/4";
         }
         
 
         else
         {
             NoPipes.text = "Destroyed Pipes: Completed";
-            NoGenerator.text = "Destroyed Generator: 0";
+            NoGenerator.text = "Destroyed Generator: 0/3";
             MyEventManager.instance.OpenGeneratorRoom();
         }
     }

@@ -127,7 +127,7 @@ GameObject:
   - component: {fileID: 938779338714694935}
   - component: {fileID: 938779338714694932}
   - component: {fileID: 938779338714694933}
-  - component: {fileID: 938779338714694934}
+  - component: {fileID: 7943694999007260832}
   m_Layer: 0
   m_Name: MySwitch
   m_TagString: Untagged
@@ -214,7 +214,7 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
---- !u!114 &938779338714694934
+--- !u!114 &7943694999007260832
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -223,7 +223,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 938779338714695019}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 176795b0d954244c1b33aeb71c733286, type: 3}
+  m_Script: {fileID: 11500000, guid: 1acf1493e29ee184da9c866108385da0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  sceneToLoad: 2
+  sceneToLoad: 0
