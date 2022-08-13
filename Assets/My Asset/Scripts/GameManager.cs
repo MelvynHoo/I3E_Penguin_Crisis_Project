@@ -87,19 +87,27 @@ public class GameManager : MonoBehaviour
     private void Update()
     {
         
-        if (pipesCount >= 4)
+
+        if (pipesCount >= 4 && generatorCount >= 3 && computerCount >= 6)
+        {
+            Debug.Log("Update escape");
+            NoPipes.text = "Escape the facility";
+            NoGenerator.text = "";
+            NoComputer.text = "";
+        }
+        else if (pipesCount >= 4)
         {
             NoPipes.text = "Destroy Pipes: Completed";
         }
-        if (generatorCount >= 3)
+        else if (generatorCount >= 3)
         {
-            NoGenerator.text = "Destroy Generator: Completed";
+            //NoGenerator.text = "Destroy Generator: Completed";
         }
-        if (computerCount >= 6)
+        else if (computerCount >= 6)
         {
             NoComputer.text = "Destroy Computer: Completed";
         }
-        
+
     }
 
     /// <summary>
@@ -133,19 +141,22 @@ public class GameManager : MonoBehaviour
                 activePlayer.transform.position = playerSpot.transform.position;
                 activePlayer.transform.rotation = playerSpot.transform.rotation;
             }
-            if (pipesCount >= 4)
+           
+            if (computerCount >= 6)
+            {
+                NoPipes.text = "Escape the facility";
+                NoGenerator.text = "";
+                NoComputer.text = "";
+            }
+            else if (pipesCount >= 4)
             {
                 NoPipes.text = "Destroyed Pipes: Completed";
                 NoGenerator.text = "Destroyed Generator: 0";
             }
             else if (generatorCount >= 3)
             {
-                NoGenerator.text = "Destroyed Generator: Completed";
+                //NoGenerator.text = "Destroyed Generator: Completed";
                 NoComputer.text = "Destroyed Computer: 0";
-            }
-            else if (computerCount >= 6)
-            {
-                NoComputer.text = "Destroyed Computer: Completed";
             }
             else
             {
@@ -162,7 +173,19 @@ public class GameManager : MonoBehaviour
             NoPipes.text = "Destroyed Pipes: Completed";
             NoGenerator.text = "Destroyed Generator: 0";
         }
-        
+        else if (SceneManager.GetActiveScene().buildIndex == 3)
+        {
+            NoPipes.text = "Destroyed Pipes: Completed";
+            NoGenerator.text = "Destroyed Generator: Completed";
+        }
+        else if (SceneManager.GetActiveScene().buildIndex == 5)
+        {
+            NoPipes.text = "Escape the facility";
+            NoGenerator.text = "";
+            NoComputer.text = "";
+        }
+
+
     }
 
     /// <summary>
@@ -275,7 +298,7 @@ public class GameManager : MonoBehaviour
 
     public async void PollutedWaterDialogue()
     {
-        Debug.Log("Boss penguin talking");
+        //Debug.Log("Boss penguin talking");
         if (!talkOnce)
         {
             //backgroundDialogue.SetActive(true);
@@ -293,7 +316,7 @@ public class GameManager : MonoBehaviour
     }
     public async void IcebergDialogue()
     {
-        Debug.Log("Boss penguin talking");
+        //Debug.Log("Boss penguin talking");
         if (!talkOnce)
         {
             //backgroundDialogue.SetActive(true);
@@ -336,6 +359,7 @@ public class GameManager : MonoBehaviour
         {
             NoGenerator.text = "Destroyed Generator: " + generatorCount.ToString();
         }
+        
         else
         {
             NoGenerator.text = "Destroyed Generator: Completed";
@@ -351,6 +375,7 @@ public class GameManager : MonoBehaviour
         {
             NoComputer.text = "Destroyed Computer: " + computerCount.ToString();
         }
+        
         else
         {
             NoComputer.text = "Destroyed Computer: Completed";
@@ -365,6 +390,8 @@ public class GameManager : MonoBehaviour
         {
             NoPipes.text = "Destroyed Pipes: " + pipesCount.ToString();
         }
+        
+
         else
         {
             NoPipes.text = "Destroyed Pipes: Completed";

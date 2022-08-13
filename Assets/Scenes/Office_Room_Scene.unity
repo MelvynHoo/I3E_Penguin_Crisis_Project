@@ -7749,6 +7749,16 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 938779338048718072, guid: 2f5ab5723d37e7d47badb7aa289a54b1,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 938779338048718072, guid: 2f5ab5723d37e7d47badb7aa289a54b1,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -0.44
+      objectReference: {fileID: 0}
     - target: {fileID: 938779338048718073, guid: 2f5ab5723d37e7d47badb7aa289a54b1,
         type: 3}
       propertyPath: m_StaticEditorFlags
@@ -7757,7 +7767,7 @@ PrefabInstance:
     - target: {fileID: 938779338048718074, guid: 2f5ab5723d37e7d47badb7aa289a54b1,
         type: 3}
       propertyPath: m_Intensity
-      value: 1
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 938779338714694934, guid: 2f5ab5723d37e7d47badb7aa289a54b1,
         type: 3}
@@ -7827,7 +7837,7 @@ PrefabInstance:
     - target: {fileID: 938779338714695019, guid: 2f5ab5723d37e7d47badb7aa289a54b1,
         type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 938779338714695019, guid: 2f5ab5723d37e7d47badb7aa289a54b1,
         type: 3}

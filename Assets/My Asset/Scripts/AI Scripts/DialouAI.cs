@@ -86,7 +86,6 @@ public class DialouAI : MonoBehaviour
 
         }
     }
-    */
     private void OnTriggerEnter(Collider other)
     {
         if (other.transform.tag == "Player")
@@ -96,4 +95,5 @@ public class DialouAI : MonoBehaviour
 
         }
     }
+    */
 }

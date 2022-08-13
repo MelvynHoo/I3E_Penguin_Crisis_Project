@@ -522,7 +522,7 @@ public class Player : MonoBehaviour
         }
         else if(other.transform.tag == "Polluted Water")
         {
-            GameManager.instance.EndingDialogue();
+            GameManager.instance.PollutedWaterDialogue();
         }
         else if (other.transform.tag == "Iceberg")
         {
