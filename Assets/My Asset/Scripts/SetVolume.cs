@@ -20,4 +20,17 @@ public class SetVolume : MonoBehaviour
     {
         mixer.SetFloat("MusicVolume", Mathf.Log10(slidervalue) * 20);
     }
+
+
+    public void MuteToggle(bool muted)
+    {
+        if (muted)
+        {
+            AudioListener.volume = 0;
+        }
+        else
+        {
+            AudioListener.volume = 1;
+        }
+    }
 }
