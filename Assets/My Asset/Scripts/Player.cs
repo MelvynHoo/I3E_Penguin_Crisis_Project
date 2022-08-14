@@ -167,6 +167,7 @@ public class Player : MonoBehaviour
     public GameObject hitIndicator;
     public AudioSource weaponSound;
     public AudioSource hitSound;
+    public AudioSource eatingSound;
     #endregion
 
     #region Interaction Related Variables
@@ -421,7 +422,7 @@ public class Player : MonoBehaviour
                 KillPlayer();
             }
             hitIndicator.SetActive(true);
-            weaponSound.Play();
+            hitSound.Play();
             await Task.Delay(200);
             hitIndicator.SetActive(false);
         }
@@ -453,6 +454,7 @@ public class Player : MonoBehaviour
         toInteract.text = "(E) Eat fish";
         if (collectedFood == interact)
         {
+            eatingSound.Play();
             toEatFood = true;
             interact = false;
             currentHealth += foodValue;
