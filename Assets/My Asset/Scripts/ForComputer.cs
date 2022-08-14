@@ -1,3 +1,9 @@
+/*
+ * Author: Melvyn Hoo
+ * Date: 14 Aug 2022
+ * Description: For Computer script, to check the health and damage taken
+ */
+
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -11,7 +17,9 @@ public class ForComputer : MonoBehaviour
     public string currentState;
     public string nextState;
 
-
+    /// <summary>
+    /// track how many pipes has been destroy
+    /// </summary>
     int destroyedComputer = 0;
 
     #region Health Related Variables
@@ -30,15 +38,13 @@ public class ForComputer : MonoBehaviour
     bool useWater = false;
     #endregion
 
-    public GameObject objectVFX1;
-    public GameObject objectVFX2;
+    /// <summary>
+    /// On VFX when destroy
+    /// </summary>
+    //public GameObject objectVFX1;
+    //public GameObject objectVFX2;
     //public TextMeshProUGUI healthBar;
 
-    private void Awake()
-    {
-
-        instance = this;
-    }
 
     // Start is called before the first frame update
     void Start()
@@ -81,10 +87,17 @@ public class ForComputer : MonoBehaviour
         //Debug.Log("currentState: " + currentState);
     }
 
+    /// <summary>
+    /// Switch State
+    /// </summary>
     void SwitchState()
     {
         StartCoroutine(currentState);
     }
+
+    /// <summary>
+    /// Take the damage from the player
+    /// </summary>
     public void TakeDamage(float damage)
     {
         //Debug.Log("Received damage: " + damage);
@@ -98,6 +111,10 @@ public class ForComputer : MonoBehaviour
         }
 
     }
+
+    /// <summary>
+    ///When trigger, allow pour water
+    /// </summary>
     private void OnTriggerStay(Collider other)
     {
 
@@ -107,6 +124,10 @@ public class ForComputer : MonoBehaviour
             other.GetComponentInParent<Player>().UseWater(useWater);
         }
     }
+
+    /// <summary>
+    ///When trigger exit, clear interaction
+    /// </summary>
     private void OnTriggerExit(Collider other)
     {
         if (other.transform.tag == "Player")
@@ -126,6 +147,10 @@ public class ForComputer : MonoBehaviour
         }
     }
     */
+
+    /// <summary>
+    /// Nromal health
+    /// </summary>
     IEnumerator Normal()
     {
         while (currentState == "Normal")
@@ -135,6 +160,10 @@ public class ForComputer : MonoBehaviour
         }
         SwitchState();
     }
+
+    /// <summary>
+    /// Damage taken the from the player
+    /// </summary>
     IEnumerator Damage()
     {
 
@@ -146,7 +175,9 @@ public class ForComputer : MonoBehaviour
         }
         SwitchState();
     }
-    // When taken damage thrice, colour is red, then the colour will gradually change colour back to orange
+    /// <summary>
+    /// Critical state
+    /// </summary>
     IEnumerator Critical()
     {
         healthBar.size = currentHP / maxHP;
@@ -159,7 +190,9 @@ public class ForComputer : MonoBehaviour
         SwitchState();
 
     }
-    // When taken damage four times, the gameobject will be destroy
+    /// <summary>
+    /// When the object is destroyed, add one to the list and call gamemanager
+    /// </summary>
     IEnumerator Destroyed()
     {
         ++destroyedComputer;

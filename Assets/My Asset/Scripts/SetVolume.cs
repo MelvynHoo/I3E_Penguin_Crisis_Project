@@ -1,7 +1,7 @@
 /*
  * Author: Melvyn Hoo
- * Date: 23 June 2022
- * Description: Set Volume C#, Control the mausic volume of the game.
+ * Date: 14 Aug 2022
+ * Description: Set Volume C#, Control the sound volume of the game or mute the sound.
  */
 
 using System.Collections;
@@ -16,12 +16,17 @@ public class SetVolume : MonoBehaviour
     /// </summary>
     public AudioMixer mixer;
 
+    /// <summary>
+    /// A math equation the control the volume using the slider.
+    /// </summary>
     public void SetLevel(float slidervalue)
     {
         mixer.SetFloat("MusicVolume", Mathf.Log10(slidervalue) * 20);
     }
 
-
+    /// <summary>
+    /// Toggle the sound on/off.
+    /// </summary>
     public void MuteToggle(bool muted)
     {
         if (muted)

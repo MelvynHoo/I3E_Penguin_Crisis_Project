@@ -1,7 +1,7 @@
 /*
  * Author: Melvyn Hoo
- * Date: 23 June 2022
- * Description: Lava Platform C#, Control platform when player stand on it
+ * Date: 14 Aug 2022
+ * Description: Floating Platform C#, Control platform when player stand on it
  */
 
 using System.Collections;

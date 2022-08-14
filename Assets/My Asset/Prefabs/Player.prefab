@@ -249,7 +249,8 @@ AudioSource:
   m_GameObject: {fileID: 457210640609613226}
   m_Enabled: 1
   serializedVersion: 4
-  OutputAudioMixerGroup: {fileID: 0}
+  OutputAudioMixerGroup: {fileID: 24300002, guid: f45a948308cb08f438f037abed2778a8,
+    type: 2}
   m_audioClip: {fileID: 8300000, guid: dd3e58f5acd7f3b4ebf77aff0c3d5be7, type: 3}
   m_PlayOnAwake: 0
   m_Volume: 1
@@ -843,7 +844,8 @@ AudioSource:
   m_GameObject: {fileID: 4582722858581324956}
   m_Enabled: 1
   serializedVersion: 4
-  OutputAudioMixerGroup: {fileID: 0}
+  OutputAudioMixerGroup: {fileID: 24300002, guid: f45a948308cb08f438f037abed2778a8,
+    type: 2}
   m_audioClip: {fileID: 8300000, guid: 977cac83fef4e814d93046867f189d0b, type: 3}
   m_PlayOnAwake: 0
   m_Volume: 1
@@ -1675,8 +1677,8 @@ MonoBehaviour:
   headBotRotateLimit: 90
   baseMoveSpeed: 5
   rotationSpeed: 0.075
-  sprintFactor: 2
-  jumpForce: 250
+  sprintFactor: 1.75
+  jumpForce: 240
   healthBar: {fileID: 8757206896122111276}
   staminaBar: {fileID: 3437971712141595382}
   playerCamera: {fileID: 8494541701297733610}
@@ -2025,7 +2027,8 @@ AudioSource:
   m_GameObject: {fileID: 8967630360857641079}
   m_Enabled: 1
   serializedVersion: 4
-  OutputAudioMixerGroup: {fileID: 0}
+  OutputAudioMixerGroup: {fileID: 24300002, guid: f45a948308cb08f438f037abed2778a8,
+    type: 2}
   m_audioClip: {fileID: 8300000, guid: 5d7c93e2136e0a94fa23ee622e4c7bae, type: 3}
   m_PlayOnAwake: 0
   m_Volume: 1

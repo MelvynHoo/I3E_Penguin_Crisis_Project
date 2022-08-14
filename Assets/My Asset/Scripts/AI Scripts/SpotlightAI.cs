@@ -1,3 +1,9 @@
+/*
+ * Author: Melvyn Hoo
+ * Date: 14 Aug 2022
+ * Description: Spotlight AI, to tracking player and pass the information to the guards
+ */
+
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -8,18 +14,32 @@ public class SpotlightAI : MonoBehaviour
     public string currentState;
     public string nextState;
 
+    /// <summary>
+    /// The idle time 
+    /// </summary>
     public float idleTime;
 
     private NavMeshAgent agent;
 
+    /// <summary>
+    /// Set Checkpoint
+    /// </summary>
     public Transform[] checkpoints;
 
+    /// <summary>
+    /// Current checkpoint index
+    /// </summary>
     private int currentCheckpointIndex;
 
+    /// <summary>
+    /// track player
+    /// </summary>
     private Transform playerToChase;
 
 
-
+    /// <summary>
+    /// The the Ai the currentstate Idle
+    /// </summary>
     private void Start()
     {
         agent = GetComponent<NavMeshAgent>();
@@ -27,6 +47,10 @@ public class SpotlightAI : MonoBehaviour
         nextState = currentState;
         SwitchState();
     }
+
+    /// <summary>
+    /// check current state
+    /// </summary>
     private void Update()
     {
         if(currentState != nextState)
@@ -35,25 +59,30 @@ public class SpotlightAI : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// Switch State
+    /// </summary>
     void SwitchState()
     {
         StartCoroutine(currentState);
     }
 
+    /// <summary>
+    /// See the player and track the player
+    /// </summary>
     public void SeePlayer(Transform player)
     {
         playerToChase = player;
         nextState = "Chase";
     }
 
-    
 
+    /// <summary>
+    ///  The spotlight idle
+    /// </summary>
     IEnumerator Idle()
     {
         agent.speed = 0f;
-
-
-
 
         while (currentState == "Idle")
         {
@@ -65,6 +94,9 @@ public class SpotlightAI : MonoBehaviour
         SwitchState();
     }
 
+    /// <summary>
+    ///  Patrol, to start scanning the area
+    /// </summary>
     IEnumerator Patrol()
     {
         agent.SetDestination(checkpoints[currentCheckpointIndex].position);
@@ -98,6 +130,9 @@ public class SpotlightAI : MonoBehaviour
         SwitchState();
     }
 
+    /// <summary>
+    ///  Chase, to track the player
+    /// </summary>
     IEnumerator Chase()
     {
         

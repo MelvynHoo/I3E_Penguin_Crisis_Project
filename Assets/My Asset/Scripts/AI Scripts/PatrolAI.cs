@@ -1,3 +1,10 @@
+/*
+ * Author: Melvyn Hoo
+ * Date: 14 Aug 2022
+ * Description: Patrol AI, for the AI the guard the facility
+ */
+
+
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -10,19 +17,41 @@ public class PatrolAI : MonoBehaviour
     public string currentState;
     public string nextState;
 
+    /// <summary>
+    /// The idle time 
+    /// </summary>
     public float idleTime;
 
     private NavMeshAgent agent;
 
+    /// <summary>
+    /// Set Checkpoint
+    /// </summary>
     public Transform[] checkpoints;
 
+    /// <summary>
+    /// Current checkpoint index
+    /// </summary>
     private int currentCheckpointIndex;
 
+    /// <summary>
+    /// track player
+    /// </summary>
     private Transform playerToChase;
 
+    /// <summary>
+    /// Animator for the patrolAi
+    /// </summary>
     public Animator animator;
 
+    /// <summary>
+    /// Walking sound
+    /// </summary>
     public AudioSource walkSound;
+
+    /// <summary>
+    /// Running sound
+    /// </summary>
     public AudioSource runningSound;
 
     /// <summary>
@@ -61,6 +90,10 @@ public class PatrolAI : MonoBehaviour
 
     public GameObject GuardAI;
 
+
+    /// <summary>
+    /// The the Ai the currentstate Idle
+    /// </summary>
     private void Start()
     {
 
@@ -77,6 +110,10 @@ public class PatrolAI : MonoBehaviour
         SwitchState();
         animator = GetComponent<Animator>();
     }
+
+    /// <summary>
+    /// check current state
+    /// </summary>
     private void Update()
     {
         if (currentState != nextState)
@@ -101,17 +138,27 @@ public class PatrolAI : MonoBehaviour
         
     }
 
+    /// <summary>
+    /// Switch State
+    /// </summary>
     void SwitchState()
     {
         StartCoroutine(currentState);
        
     }
 
+    /// <summary>
+    /// When patrolAI sees the player, chase him/her
+    /// </summary>
     public void SeePlayer(Transform player)
     {
         playerToChase = player;
         nextState = "Chase";
     }
+
+    /// <summary>
+    /// When patrolAI collide with the player, damage the player
+    /// </summary>
     private void OnCollisionEnter(Collision collision)
     {
         if (turnOffDamage == true)
@@ -131,6 +178,10 @@ public class PatrolAI : MonoBehaviour
             }
         }
     }
+
+    /// <summary>
+    /// When PatrolAI touch weapon tag, take damage
+    /// </summary>
     private void OnTriggerEnter(Collider other)
     {
         /*
@@ -151,6 +202,9 @@ public class PatrolAI : MonoBehaviour
         */
     }
 
+    /// <summary>
+    /// Damage calculation for the PatrolAI
+    /// </summary>
     public void TakeDamage(float damage)
     {
         //Debug.Log("Received damage: " + damage);
@@ -165,7 +219,9 @@ public class PatrolAI : MonoBehaviour
         
     }
 
-
+    /// <summary>
+    /// CriticalHealth for the PatrolAi
+    /// </summary>
     IEnumerator CriticalHealth()
     {
         float currentRecoveryTime = 0f;
@@ -213,7 +269,9 @@ public class PatrolAI : MonoBehaviour
         SwitchState();
     }
 
-
+    /// <summary>
+    /// Idle IEnumerator, when the patrol AI not moving
+    /// </summary>
     IEnumerator Idle()
     {
         agent.speed = 0f;
@@ -236,6 +294,9 @@ public class PatrolAI : MonoBehaviour
         SwitchState();
     }
 
+    /// <summary>
+    /// Patrol state, of the playerAI
+    /// </summary>
     IEnumerator Patrol()
     {
         agent.SetDestination(checkpoints[currentCheckpointIndex].position);
@@ -273,6 +334,9 @@ public class PatrolAI : MonoBehaviour
         SwitchState();
     }
 
+    /// <summary>
+    /// Chase IEnumerator, when the patrolAI spot the player
+    /// </summary>
     IEnumerator Chase()
     {
         //turnOffDamage = false;

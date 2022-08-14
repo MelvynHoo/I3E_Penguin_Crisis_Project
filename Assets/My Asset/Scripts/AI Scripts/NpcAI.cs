@@ -1,3 +1,9 @@
+/*
+ * Author: Melvyn Hoo
+ * Date: 14 Aug 2022
+ * Description: NPC AI, for the AI in the Igloo
+ */
+
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -7,13 +13,37 @@ public class NpcAI : MonoBehaviour
 {
     public string currentState;
     public string nextState;
+
+    /// <summary>
+    /// The idle time 
+    /// </summary>
     public float idleTime;
+
+    /// <summary>
+    /// Set penguin standing still false
+    /// </summary>
     public bool penguinStandingStill = false;
     private NavMeshAgent agent;
+
+    /// <summary>
+    /// Current checkpoint index
+    /// </summary>
     private int currentCheckpointIndex;
+
+    /// <summary>
+    /// Set Checkpoint
+    /// </summary>
     public Transform[] checkpoints;
+
+    /// <summary>
+    /// Animator for the NPC AI
+    /// </summary>
     public Animator penguinAnimator;
     Rigidbody penguinRigid;
+
+    /// <summary>
+    /// The the Ai the currentstate Idle
+    /// </summary>
     private void Start()
     {
         agent = GetComponent<NavMeshAgent>();
@@ -31,6 +61,10 @@ public class NpcAI : MonoBehaviour
         }
         SwitchState();
     }
+
+    /// <summary>
+    /// check current state
+    /// </summary>
     private void Update()
     {
         if (currentState != nextState)
@@ -38,11 +72,18 @@ public class NpcAI : MonoBehaviour
             currentState = nextState;
         }
     }
+
+    /// <summary>
+    /// Switch State
+    /// </summary>
     void SwitchState()
     {
         StartCoroutine(currentState);
     }
 
+    /// <summary>
+    /// StandingStill IEnumerator, for penguin to animator second animator
+    /// </summary>
     IEnumerator StandingStill()
     {
      
@@ -61,6 +102,9 @@ public class NpcAI : MonoBehaviour
         SwitchState();
     }
 
+    /// <summary>
+    /// SecondStandingStill IEnumerator, for penguin to animator second animator
+    /// </summary>
     IEnumerator SecondStandingStill()
     {
         
@@ -79,6 +123,9 @@ public class NpcAI : MonoBehaviour
         SwitchState();
     }
 
+    /// <summary>
+    /// Idle animation for the penguin
+    /// </summary>
     IEnumerator Idle()
     {
         agent.speed = 0f;
@@ -108,6 +155,9 @@ public class NpcAI : MonoBehaviour
         SwitchState();
     }
 
+    /// <summary>
+    /// Patrol IEnumerator, for the penguin to start moving and animate
+    /// </summary>
     IEnumerator Patrol()
     {
         agent.SetDestination(checkpoints[currentCheckpointIndex].position);

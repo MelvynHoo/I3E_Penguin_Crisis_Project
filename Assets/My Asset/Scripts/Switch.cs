@@ -1,3 +1,9 @@
+/*
+ * Author: Melvyn Hoo
+ * Date: 14 Aug 2022
+ * Description: A switch script, mainly use in the main menu
+ */
+
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -5,12 +11,15 @@ using UnityEngine.SceneManagement;
 
 public class Switch : MonoBehaviour
 {
-    public static Switch instance;
     /// <summary>
     /// The index of the scene to load to.
     /// </summary>
     public int sceneToLoad;
 
+
+    /// <summary>
+    /// Not sure waht is this for.
+    /// </summary>
     GameObject timedMessage;
 
     float currentDuration;
@@ -25,6 +34,9 @@ public class Switch : MonoBehaviour
     AudioSource lockedAudio;
     AudioSource doorKnobAudio;
 
+    /// <summary>
+    /// Locked door
+    /// </summary>
     IEnumerator Locked()
     {
         lockedAudio.Play();
@@ -54,12 +66,16 @@ public class Switch : MonoBehaviour
         // use the SceneManager to load the specified scene index.
         SceneManager.LoadScene(sceneToLoad);
     }
-
+    /// <summary>
+    /// Timed message
+    /// </summary>
     private void SetMessageActive()
     {
         StartCoroutine(TimedMessage());
     }
-
+    /// <summary>
+    /// Timed message
+    /// </summary>
     IEnumerator TimedMessage()
     {
         timedMessage.SetActive(true);
@@ -68,7 +84,9 @@ public class Switch : MonoBehaviour
 
         timedMessage.SetActive(false);
     }
-
+    /// <summary>
+    /// Update the messageActive
+    /// </summary>
     private void Update()
     {
         if(messageActive)
@@ -85,12 +103,18 @@ public class Switch : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// Load the scene with the index
+    /// </summary>
     public void LoadScene()
     {
         // use the SceneManager to load the specified scene index.
         SceneManager.LoadScene(sceneToLoad);
     }
 
+    /// <summary>
+    /// Quit the game
+    /// </summary>
     public void QuitGame()
     {
         Application.Quit();

@@ -1,7 +1,7 @@
 /*
- * Author: 
- * Date: 
- * Description: 
+ * Author: Melvyn Hoo
+ * Date: 14 Aug 2022
+ * Description: Player controller, to control player movement, rotation, damage and interaction
  */
 
 using System.Collections;
@@ -81,6 +81,9 @@ public class Player : MonoBehaviour
     /// </summary>
     private bool sprint;
 
+    /// <summary>
+    /// Set the gamePause for the player
+    /// </summary>
     private bool gamePause;
 
     /// <summary>
@@ -126,7 +129,9 @@ public class Player : MonoBehaviour
     /// The UI healthbar of the player.
     /// </summary>
     public Scrollbar healthBar;
-
+    /// <summary>
+    /// The UI for the staminabar of the player
+    /// </summary>
     public Scrollbar staminaBar;
 
     #endregion
@@ -151,48 +156,120 @@ public class Player : MonoBehaviour
     /// </summary>
     public Animator playerAnimator;
 
-
-    public GameObject ToOffUI;
     /// <summary>
-    /// Combat mechanic
+    /// Turn off the UI
     /// </summary>
+    public GameObject ToOffUI;
+
     #region Combat Related Variables
+    /// <summary>
+    /// Gameobject of the weaponAnimation
+    /// </summary>
     public GameObject weaponAnimation;
+
+    /// <summary>
+    /// Gameobject of the payer weapon
+    /// </summary>
     public GameObject playerWeapon;
+
+    /// <summary>
+    /// Check if the player action is trigger and check once
+    /// </summary>
     bool toHit = false;
+
+    /// <summary>
+    /// Check when the player picks up the wrench and store inside
+    /// </summary>
     int haveWeapon = 0;
+
+    /// <summary>
+    /// Check when have equip the wrench
+    /// </summary>
     bool toEquipWrench = false;
+
+    /// <summary>
+    /// Tick to use the wrench when in project mode
+    /// </summary>
     public bool developerWrench = false;
+
+    /// <summary>
+    /// Stamina for the melee
+    /// </summary>
     float meleeStaminaCost = 2;
+
+    /// <summary>
+    /// Hit indicator around the crosshair, when player take damage
+    /// </summary>
     public GameObject hitIndicator;
+
+    /// <summary>
+    /// Play weapon sound
+    /// </summary>
     public AudioSource weaponSound;
+
+    /// <summary>
+    /// Play player damage sound
+    /// </summary>
     public AudioSource hitSound;
+
+    /// <summary>
+    /// Play eating sound
+    /// </summary>
     public AudioSource eatingSound;
     #endregion
 
     #region Interaction Related Variables
+
+    /// <summary>
+    /// Player interaction near the crosshair
+    /// </summary>
     public TextMeshProUGUI toInteract;
     #endregion
 
     #region Water/Food Related Variables
+
+    /// <summary>
+    /// how much the player heals
+    /// </summary>
     public int foodValue = 20;
+
+    /// <summary>
+    /// Collect the food
+    /// </summary>
     bool collectedFood = false;
+
+    /// <summary>
+    /// Eaten the food
+    /// </summary>
     bool toEatFood = false;
     //public TextMeshProUGUI waterDisplay;
+
+    /// <summary>
+    /// Check to use once
+    /// </summary>
     bool useOnce = false;
     #endregion
 
     public static bool hasKey;
 
+    /// <summary>
+    /// Timer to be display on the top of the UI
+    /// </summary>
     public TextMeshProUGUI timerText;
     private float startTime;
     private bool finished = false;
 
+    /// <summary>
+    /// Start the time
+    /// </summary>
     private void Start()
     {
         startTime = Time.time;
     }
 
+    /// <summary>
+    /// Finish the timer and set color to yellow
+    /// </summary>
     public void Finish()
     {
         finished = true;
@@ -206,10 +283,16 @@ public class Player : MonoBehaviour
     {
         DontDestroyOnLoad(gameObject);
 
+        // Set current health
         currentHealth = totalHealth;
-        currentStamina = totalStamina;
-        jumpStaminaCost = totalStamina * 0.2f;
 
+        // Set current stamina
+        currentStamina = totalStamina;
+
+        // Stamina variable
+        jumpStaminaCost = totalStamina * 0.18f;
+
+        // Remove the weapon from the player and stop the hit indicator
         weaponAnimation.SetActive(false);
         hitIndicator.SetActive(false);
         toInteract.text = "";
@@ -231,11 +314,14 @@ public class Player : MonoBehaviour
     // Update is called once per frame
     async void Update()
     {
+        // When finished is true, timer will stop
         if (finished)
         {
             //return;
             Debug.Log("Game End");
         }
+
+        // When finished is false, continue the timer
         else
         {
             float t = Time.time - startTime;
@@ -245,22 +331,29 @@ public class Player : MonoBehaviour
             timerText.text = minutes + ":" + seconds;
         }
 
+        // If not dead, call this function
         if (!isDead)
         {
             Rotation();
             Movement();
             Raycasting();
         }
+        // Update to hit to false
         toHit = false;
+
+        // When Interact is true, delay the false for the other function to read
         if (interact == true)
         {
             await Task.Delay(1000);
             interact = false;
         }
+        // Enable developer wrench
         if (developerWrench == true)
         {
             weaponAnimation.SetActive(true);
         }
+
+        // When health is over 100, set health to 100
         if (currentHealth > 100)
         {
             currentHealth = 100;
@@ -268,23 +361,30 @@ public class Player : MonoBehaviour
     }
 
     /// <summary>
-    /// Controls the rotation of the player.
+    /// When game pause is true, the player rotation will stop
     /// </summary>
-   
     public void StopRotation(bool retrievePause)
     {
         gamePause = retrievePause;
         ToOffUI.SetActive(false);
+       
     }
+
+    /// <summary>
+    /// Controls the rotation of the player.
+    /// </summary>
     void Rotation()
     {
+        // When the gamePause is true, stop rotation
         if(gamePause == true)
         {
             //Debug.Log("Game Pause");
             return;
             
+
         }
-        else 
+        // When the gamePause is false, continue rotation
+        else
         {
             ToOffUI.SetActive(true);
             // Apply the rotation multiplied by the rotation speed.
@@ -428,18 +528,25 @@ public class Player : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// Take the wench and equip it.
+    /// </summary>
     public void TakeWrench(bool canTakeWrench)
     {
         toEquipWrench = canTakeWrench;
        // Debug.Log("have Weapons:" + toEquipWrench);
         toInteract.text = "(E) To take Wrench";
+
+        // When the toEquipWrench equal to the interact
         if (toEquipWrench == interact)
         {
+            // Have weapon set to 1
             haveWeapon = 1;
             toInteract.text = "";
             //Debug.Log("have Weapons:" + haveWeapon);
             if (haveWeapon == 1)
             {
+                // Remove the weapon from the map
                 //Debug.Log("Taken the wrench");
                 weaponAnimation.SetActive(true);
                 MyEventManager.instance.Weapon();
@@ -447,6 +554,9 @@ public class Player : MonoBehaviour
         }    
     }
 
+    /// <summary>
+    /// Eat the food and gain health.
+    /// </summary>
     public void TakeFood(bool canCollectFood)
     {
         collectedFood = canCollectFood;
@@ -466,6 +576,9 @@ public class Player : MonoBehaviour
         
     }
 
+    /// <summary>
+    /// Use water to destroy the computer  immediately. (Unable to complete due to time constraint)
+    /// </summary>
     public void UseWater(bool useWater)
     {
         /*
@@ -490,6 +603,10 @@ public class Player : MonoBehaviour
         }
        */
     }
+
+    /// <summary>
+    /// To interact to load scene
+    /// </summary>
     public void ToLoadScene()
     {
         toInteract.text = "(E) To Enter/Exit";
@@ -499,10 +616,15 @@ public class Player : MonoBehaviour
             SwitchScene.instance.LoadScene();
         }
     }
+
+    /// <summary>
+    /// Clear the interaction
+    /// </summary>
     public void ClearInteraction()
     {
         toInteract.text = "";
     }
+
     /// <summary>
     /// Used to reset the player
     /// </summary>
@@ -559,6 +681,9 @@ public class Player : MonoBehaviour
 
     }
 
+    /// <summary>
+    /// When trigger is on stay
+    /// </summary>
     private void OnTriggerStay(Collider other)
     {
         if (other.transform.tag == "Food" && toEatFood == true)
@@ -575,6 +700,7 @@ public class Player : MonoBehaviour
     /// <param name="collision"></param>
     private void OnCollisionEnter(Collision collision)
     {
+        // Penguin can jump multiple times
         canJump = true;
         /*
         if(collision.gameObject.tag == "Ground")
@@ -587,6 +713,8 @@ public class Player : MonoBehaviour
 
     private void OnCollisionExit(Collision collision)
     {
+
+        // Penguin can jump multiple times
         canJump = true;
         /*
         if (collision.gameObject.tag == "Ground")
@@ -626,22 +754,36 @@ public class Player : MonoBehaviour
     /// </summary>
     async void OnFire()
     {
+        // When currentStamina and meleeStaminaCost greater than 0
         if (currentStamina - meleeStaminaCost > 0)
         {
             toHit = true;
             //currentStamina -= meleeStaminaCost;
+
+            // Player animation swing
             weaponAnimation.GetComponent<Animator>().Play("Weapon Swing");
+            // On collider
             playerWeapon.GetComponent<Collider>().enabled = true;
             await Task.Delay(100);
+            // Off collider
             playerWeapon.GetComponent<Collider>().enabled = false;
             await Task.Delay(150);
             toHit = false;
-            if (haveWeapon == 1)
+            // Play weapon sound when player is equipped with the wrench
+            if (gamePause == true)
+            {
+                weaponSound.Stop();
+            }
+            else if (haveWeapon == 1)
             {
                 weaponSound.Play();
             }
         }
     }
+
+    /// <summary>
+    /// On interact (E), interact is true
+    /// </summary>
     void OnInteract()
     {
         interact = true;

@@ -1,3 +1,8 @@
+/*
+ * Author: Melvyn Hoo
+ * Date: 14 Aug 2022
+ * Description: Hazard script from I3E Quiz, use for the polluted water
+ */
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;

@@ -1,3 +1,10 @@
+/*
+ * Author: Melvyn Hoo
+ * Date: 14 Aug 2022
+ * Description: Game Manager script, control the overall game
+ */
+
+
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -54,14 +61,41 @@ public class GameManager : MonoBehaviour
     /// Generator Room Keeping track of many generator is destroy.
     /// </summary>
     public int generatorCount = 0;
+
+    /// <summary>
+    /// Keeping track of many pipes is destroy.
+    /// </summary>
     public int pipesCount = 0;
+
+    /// <summary>
+    /// Keeping track of many computer is destroy.
+    /// </summary>
     public int computerCount = 0;
 
+    /// <summary>
+    /// Text for objective generator.
+    /// </summary>
     public TextMeshProUGUI NoGenerator;
+
+    /// <summary>
+    /// Text for objective pipes.
+    /// </summary>
     public TextMeshProUGUI NoPipes;
+
+    /// <summary>
+    /// Text for objective computer.
+    /// </summary>
     public TextMeshProUGUI NoComputer;
+
+    /// <summary>
+    /// Text for hint to the players.
+    /// </summary>
     public TextMeshProUGUI Hints;
     #endregion
+
+    /// <summary>
+    /// set instance.
+    /// </summary>
     private void Awake()
     {
         dialogueMessage.text = "";
@@ -86,6 +120,9 @@ public class GameManager : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// Update the value when citeria has been met.
+    /// </summary>
     private void Update()
     {
 
@@ -144,17 +181,22 @@ public class GameManager : MonoBehaviour
                 activePlayer.transform.rotation = playerSpot.transform.rotation;
             }
 
+            // When computer have more the or equal to 6
             if (computerCount >= 6)
             {
                 NoPipes.text = "Escape the facility";
                 NoGenerator.text = "";
                 NoComputer.text = "";
             }
+
+            // When pipes have more the or equal to 4
             else if (pipesCount >= 4)
             {
                 NoPipes.text = "Destroyed Pipes: Completed";
                 NoGenerator.text = "Destroyed Generator: " + generatorCount.ToString() + "/3";
             }
+
+            // When generator have more the or equal to 3
             else if (generatorCount >= 3)
             {
                 //NoGenerator.text = "Destroyed Generator: Completed";
@@ -171,24 +213,43 @@ public class GameManager : MonoBehaviour
             Debug.Log("Number of Pipes " + pipesCount);
             Debug.Log("Number of Computer " + computerCount);
         }
+
+        // When scene is 1, enable the following
+        if (SceneManager.GetActiveScene().buildIndex == 1)
+        {
+            NoPipes.text = "Talk to the Elder Penguin.";
+            Time.timeScale = 1f;
+        }
+        // When scene is 2, enable the following
         if (SceneManager.GetActiveScene().buildIndex == 2)
         {
             NoPipes.text = "Destroyed Pipes: Completed";
             NoGenerator.text = "Destroyed Generator: " + generatorCount.ToString() + "/3";
             Hints.text = "";
         }
-        else if (SceneManager.GetActiveScene().buildIndex == 3 || SceneManager.GetActiveScene().buildIndex == 4)
+        // When scene is 3, enable the following
+        else if (SceneManager.GetActiveScene().buildIndex == 3)
+        {
+            NoPipes.text = "Destroyed Pipes: Completed";
+            NoGenerator.text = "Destroyed Generator: Completed";
+            NoComputer.text = "Destroyed Computer: " + computerCount.ToString() + "/6";
+            Hints.text = "Hints: Find the blue light to the next objective.";
+        }
+        // When scene is 4, enable the following
+        else if (SceneManager.GetActiveScene().buildIndex == 4)
         {
             NoPipes.text = "Destroyed Pipes: Completed";
             NoGenerator.text = "Destroyed Generator: Completed";
             NoComputer.text = "Destroyed Computer: " + computerCount.ToString() + "/6";
             Hints.text = "";
         }
+        // When scene is 5, enable the following
         else if (SceneManager.GetActiveScene().buildIndex == 5)
         {
             NoPipes.text = "Escape the facility";
             NoGenerator.text = "";
             NoComputer.text = "";
+            Hints.text = "Hints: Find and follow the blue light to escape.";
         }
 
 
@@ -223,8 +284,8 @@ public class GameManager : MonoBehaviour
     /// </summary>
     public void StartGame()
     {
-        
         LoadScene(1);
+        Time.timeScale = 1f;
     }
 
     /// <summary>
@@ -234,10 +295,17 @@ public class GameManager : MonoBehaviour
     {
         Destroy(activePlayer.gameObject);
         LoadScene(0);
+        generatorCount = 0;
+        pipesCount = 0;
+        computerCount = 0;
+        NoGenerator.text = "";
+        NoComputer.text = "";
+        NoPipes.text = "";
+        Hints.text = "";
     }
 
     /// <summary>
-    /// Restarts the game
+    /// Restarts the game, reset the value
     /// </summary>
     public void RestartGame()
     {
@@ -250,6 +318,7 @@ public class GameManager : MonoBehaviour
         NoGenerator.text = "";
         NoComputer.text = "";
         NoPipes.text = "";
+        Hints.text = "";
         //activePlayer.ResetPlayer();
         Player.instance.ResetPlayer();
     }
@@ -276,8 +345,19 @@ public class GameManager : MonoBehaviour
     /// </summary>
     public void ShowCompleteMenu()
     {
+        Time.timeScale = 0f;
         completeMenu.SetActive(true);
+        Player.instance.StopRotation(true);
+        dialogueMessage.text = "";
+        NoGenerator.text = "";
+        NoComputer.text = "";
+        NoPipes.text = "";
+        Hints.text = "";
     }
+
+    /// <summary>
+    /// Boss penguin dialogue
+    /// </summary>
     public async void BossPenguinDialogue()
     {
         //Debug.Log("Boss penguin talking");
@@ -303,6 +383,9 @@ public class GameManager : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// Polluted water dialogue
+    /// </summary>
     public async void PollutedWaterDialogue()
     {
         //Debug.Log("Boss penguin talking");
@@ -321,14 +404,26 @@ public class GameManager : MonoBehaviour
 
         }
     }
+
+    /// <summary>
+    /// Change the objective when reach to a certain area
+    /// </summary>
     public void ActivateFindFacility()
     {
         NoPipes.text = "Find a way to enter the facility.";
     }
+
+    /// <summary>
+    /// Change the objective when reach to a certain area
+    /// </summary>
     public void ActivatePipesObjective()
     {
         NoPipes.text = "Destroyed Pipes: " + pipesCount.ToString() + "/4";
     }
+
+    /// <summary>
+    /// Polluted Iceberg dialogue
+    /// </summary>
     public async void IcebergDialogue()
     {
         //Debug.Log("Boss penguin talking");
@@ -347,6 +442,10 @@ public class GameManager : MonoBehaviour
 
         }
     }
+
+    /// <summary>
+    /// Ending dialogue
+    /// </summary>
     public async void EndingDialogue()
     {
         //Debug.Log("Boss penguin talking");
@@ -366,6 +465,9 @@ public class GameManager : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// function to track the generator and update the objective counter
+    /// </summary>
     public async void TrackGenerator(int destroyedGens)
     {
         generatorCount += destroyedGens;
@@ -384,6 +486,10 @@ public class GameManager : MonoBehaviour
             Hints.text = "Hints: Find the blue light to the next objective.";
         }
     }
+
+    /// <summary>
+    /// function to track the computer and update the objective counter
+    /// </summary>
     public async void TrackComputer(int destroyedComputer)
     {
         computerCount += destroyedComputer;
@@ -401,6 +507,10 @@ public class GameManager : MonoBehaviour
             Hints.text = "Hints: Find the blue light to the next objective.";
         }
     }
+
+    /// <summary>
+    /// function to track the pipes and update the objective counter
+    /// </summary>
     public async void TrackPipes(int destroyedPipes)
     {
         pipesCount += destroyedPipes;
@@ -414,7 +524,7 @@ public class GameManager : MonoBehaviour
         else
         {
             NoPipes.text = "Destroyed Pipes: Completed";
-            NoGenerator.text = "Destroyed Generator:" + generatorCount.ToString() + "/3";
+            NoGenerator.text = "Destroyed Generator: " + generatorCount.ToString() + "/3";
             MyEventManager.instance.OpenGeneratorRoom();
             await Task.Delay(3000);
             Hints.text = "Hints: Find the blue light to the next objective.";

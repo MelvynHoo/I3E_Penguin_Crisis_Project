@@ -1,6 +1,6 @@
 /*
  * Author: Melvyn Hoo
- * Date: 23 June 2022
+ * Date: 14 Aug 2022
  * Description: MyEventManager C#, My own manager that is separated from the Gamemanager, control only within the scene they are
  * placed at.
  */
@@ -15,19 +15,29 @@ using System.Threading.Tasks;
 public class MyEventManager : MonoBehaviour
 {
     public static MyEventManager instance;
+
     /// <summary>
-    /// To open the a way out or close them when trigger
+    /// Gameobject of the wrench in the map
     /// </summary>
     [Header("Weapon")]
     public GameObject weaponEquipped;
 
+    /// <summary>
+    /// Gameobject trigger in the starting scene
+    /// </summary>
     [Header("Open Generator Room")]
     public GameObject toGeneratorRoom;
 
+    /// <summary>
+    /// Gameobject trigger in generator scene
+    /// </summary>
     [Header("Leave Generator Room")]
     public GameObject toOutsideTwo;
 
-    [Header("leave Generator Room")]
+    /// <summary>
+    /// Gameobject trigger in research lab scene
+    /// </summary>
+    [Header("Leave Research Lab")]
     public GameObject toOutsideThree;
 
     /// <summary>
@@ -52,21 +62,33 @@ public class MyEventManager : MonoBehaviour
             instance = this;
         }
     }
+
+    /// <summary>
+    /// make weapon disappear from the map
+    /// </summary>
     public void Weapon()
     {
         weaponEquipped.SetActive(false);
-    }    
+    }
 
+    /// <summary>
+    /// Active the trigger to the generator room
+    /// </summary>
     public void OpenGeneratorRoom()
     {
         toGeneratorRoom.SetActive(true);
     }
 
+    /// <summary>
+    /// Active the trigger to the outside scene two
+    /// </summary>
     public void OpenToOutsideTwo()
     {
         toOutsideTwo.SetActive(true);
     }
 
+    /// <summary>
+    /// Active the trigger to the outside scene three
     public void OpenToOutsideThree()
     {
         toOutsideThree.SetActive(true);

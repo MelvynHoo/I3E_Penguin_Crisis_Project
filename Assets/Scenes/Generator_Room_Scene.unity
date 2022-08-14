@@ -2388,6 +2388,36 @@ PrefabInstance:
       propertyPath: m_Name
       value: IP_Industrial_Building
       objectReference: {fileID: 0}
+    - target: {fileID: 2238115898758781858, guid: b67b40975962e1c418e291b74d849cc7,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
+    - target: {fileID: 2330244043721443070, guid: b67b40975962e1c418e291b74d849cc7,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
+    - target: {fileID: 5773962915208961370, guid: b67b40975962e1c418e291b74d849cc7,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
+    - target: {fileID: 6354582865529994311, guid: b67b40975962e1c418e291b74d849cc7,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
+    - target: {fileID: 7557712629823534994, guid: b67b40975962e1c418e291b74d849cc7,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
+    - target: {fileID: 8450301393197992476, guid: b67b40975962e1c418e291b74d849cc7,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b67b40975962e1c418e291b74d849cc7, type: 3}
 --- !u!1001 &312123589
@@ -8055,7 +8085,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!81 &1393964882
 AudioListener:
   m_ObjectHideFlags: 0
@@ -8114,14 +8144,14 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1393964881}
-  m_LocalRotation: {x: 0.5, y: 0.5, z: -0.5, w: 0.5}
-  m_LocalPosition: {x: -2.96, y: 23, z: 51.15}
+  m_LocalRotation: {x: 0.0023297353, y: 0.9947577, z: -0.07441863, w: 0.07009725}
+  m_LocalPosition: {x: -4.15, y: 3.62, z: 56.74}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 4
-  m_LocalEulerAnglesHint: {x: 90, y: 90, z: 0}
+  m_LocalEulerAnglesHint: {x: 8.533, y: 171.913, z: -0.336}
 --- !u!114 &1393964885
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -11524,7 +11554,7 @@ PrefabInstance:
     - target: {fileID: 6476271735128850465, guid: a3c9c8d81ce5f4186bf50ab224f94b07,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 2
+      value: 3.14
       objectReference: {fileID: 0}
     - target: {fileID: 6476271735128850465, guid: a3c9c8d81ce5f4186bf50ab224f94b07,
         type: 3}

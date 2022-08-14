@@ -1,3 +1,9 @@
+/*
+ * Author: Melvyn Hoo
+ * Date: 14 Aug 2022
+ * Description: ChaseCript from the I3E practice
+ */
+
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;

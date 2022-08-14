@@ -1,10 +1,21 @@
+/*
+ * Author: Melvyn Hoo
+ * Date: 14 Aug 2022
+ * Description: Remove food
+ */
+
+
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class RemoveFood : MonoBehaviour
 {
-    public static Player instance;
-    public GameObject Food;
+
+    /// <summary>
+    /// Unused script
+    /// </summary>
+    
+    
     
 }

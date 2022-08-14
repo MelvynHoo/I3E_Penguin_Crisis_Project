@@ -1,3 +1,9 @@
+/*
+ * Author: Melvyn Hoo
+ * Date: 14 Aug 2022
+ * Description: For pipes script, to check the health and damage taken
+ */
+
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -11,6 +17,9 @@ public class ForPipes : MonoBehaviour
     public string currentState;
     public string nextState;
 
+    /// <summary>
+    /// track how many pipes has been destroy
+    /// </summary>
     int destroyedPipes = 0;
 
     #region Health Related Variables
@@ -28,8 +37,11 @@ public class ForPipes : MonoBehaviour
     public Scrollbar healthBar;
     #endregion
 
-    public GameObject objectVFX1;
-    public GameObject objectVFX2;
+    /// <summary>
+    /// On VFX when destroy
+    /// </summary>
+    //public GameObject objectVFX1;
+    //public GameObject objectVFX2;
     //public TextMeshProUGUI healthBar;
 
     // Start is called before the first frame update
@@ -73,11 +85,18 @@ public class ForPipes : MonoBehaviour
         //Debug.Log("currentState: " + currentState);
     }
 
+    /// <summary>
+    /// Switch State
+    /// </summary>
     void SwitchState()
     {
         StartCoroutine(currentState);
     }
-     public void TakeDamage(float damage)
+
+    /// <summary>
+    /// Take the damage from the player
+    /// </summary>
+    public void TakeDamage(float damage)
     {
         //Debug.Log("Received damage: " + damage);
         currentHP -= damage;
@@ -91,6 +110,9 @@ public class ForPipes : MonoBehaviour
 
     }
 
+    /// <summary>
+    /// Nromal health
+    /// </summary>
     IEnumerator Normal()
     {
         while (currentState == "Normal")
@@ -100,6 +122,10 @@ public class ForPipes : MonoBehaviour
         }
         SwitchState();
     }
+
+    /// <summary>
+    /// Damage taken the from the player
+    /// </summary>
     IEnumerator Damage()
     {
         
@@ -111,7 +137,9 @@ public class ForPipes : MonoBehaviour
         }
         SwitchState();
     }
-    // When taken damage thrice, colour is red, then the colour will gradually change colour back to orange
+    /// <summary>
+    /// Critical state
+    /// </summary>
     IEnumerator Critical()
     {
         healthBar.size = currentHP / maxHP;
@@ -124,7 +152,9 @@ public class ForPipes : MonoBehaviour
         SwitchState();
    
     }
-    // When taken damage four times, the gameobject will be destroy
+    /// <summary>
+    /// When the object is destroyed, add one to the list and call gamemanager
+    /// </summary>
     IEnumerator Destroyed()
     {
         ++destroyedPipes;
